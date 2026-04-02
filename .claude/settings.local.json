@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.romullocarvalho.com.br)",
+      "Bash(npm -v)",
+      "Bash(pnpm -v)",
+      "Bash(\"C:/Users/ryanm/.claude/plans/fuzzy-booping-raven-agent-aab568586540124d5.md\":*)",
+      "Bash(pnpm create:*)",
+      "Bash(mkdir -p /tmp/rc-backup)",
+      "Bash(mv \"arquivos de apoio\" /tmp/rc-backup/)",
+      "Bash(mv REQUISITOS.md /tmp/rc-backup/)",
+      "Bash(printf 'n\\\\nn\\\\n')",
+      "Bash(yes)",
+      "Bash(mv /tmp/rc-backup/\"arquivos de apoio\" .)",
+      "Bash(mv /tmp/rc-backup/REQUISITOS.md .)",
+      "Bash(rm -rf /tmp/rc-backup)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(npx -y pnpm@10.12.0 approve-builds --allow prisma --allow @prisma/engines)",
+      "Bash(pnpm rebuild:*)",
+      "Bash(npx prisma:*)",
+      "Bash(cd:*)",
+      "Bash(mkdir -p public/images/logos public/images/hero public/images/og)",
+      "Bash(cp \"arquivos de apoio/logo/Logo 02 - branca e verde.png\" public/images/logos/logo-branca-verde.png)",
+      "Bash(cp \"arquivos de apoio/logo/cone - branco e verde.png\" public/images/logos/favicon.png)",
+      "Bash(find /c/Users/ryanm/OneDrive/Documentos/GitHub/rc-perito-digital/src -type f \\\\\\(-name *.ts -o -name *.tsx -o -name *.js -o -name *.json \\\\\\))",
+      "Bash(pnpm remove:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
