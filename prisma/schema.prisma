@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// AUTH MODELS
+// ============================================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  passwordHash  String
+  role          String    @default("ADMIN")
+  lastLogin     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============================================
+// CONTENT MODELS
+// ============================================
+
+model Article {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  content          String    @db.Text
+  excerpt          String    @default("")
+  featuredImage    String?
+  featuredImageAlt String?
+  category         String    @default("osint")
+  seoKeywords      Json      @default("[]")
+  metaTitle        String?
+  metaDescription  String?
+  author           String    @default("Romullo Carvalho")
+  status           String    @default("DRAFT")
+  viewsCount       Int       @default(0)
+  readingTime      Int       @default(1)
+  scheduledAt      DateTime?
+  publishedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([category])
+}
+
+model Short {
+  id           String   @id @default(cuid())
+  title        String
+  description  String   @default("")
+  youtubeUrl   String
+  thumbnailUrl String?
+  categoryTags Json     @default("[]")
+  status       String   @default("LIVE")
+  dateAdded    DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model InstagramPost {
+  id              String   @id @default(cuid())
+  title           String
+  description     String   @default("")
+  instagramUrl    String
+  imageUrl        String?
+  captionOverride String?  @db.Text
+  categoryTags    Json     @default("[]")
+  status          String   @default("LIVE")
+  dateAdded       DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Book {
+  id             String   @id @default(cuid())
+  title          String
+  author         String
+  coverImage     String?
+  affiliateLink  String?
+  category       String   @default("osint")
+  description    String   @default("") @db.Text
+  showOnHomepage Boolean  @default(true)
+  status         String   @default("SHOW")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Faq {
+  id           String   @id @default(cuid())
+  question     String
+  answer       String   @db.Text
+  category     String   @default("general")
+  displayOrder Int      @default(0)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([published, displayOrder])
+}
+
+model SiteConfig {
+  id                String  @id @default("default")
+  siteTitle         String  @default("RC Perito Digital")
+  metaDescription   String  @default("") @db.Text
+  primaryKeywords   Json    @default("[]")
+  googleAnalyticsId String?
+  socialLinks       Json    @default("{}")
+  logoUrl           String?
+  faviconUrl        String?
+  contactEmail      String?
+  timezone          String  @default("America/Fortaleza")
+  maintenanceMode   Boolean @default(false)
+  updatedAt         DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  status       String   @default("ACTIVE")
+  subscribedAt DateTime @default(now())
+}
