@@ -72,7 +72,7 @@ export function Footer() {
 
           {/* Social Icons */}
           <div className="flex items-center gap-3">
-            {socialIcons.map((social) => (
+            {socialIcons.filter(s => s.href).map((social) => (
               <a
                 key={social.name}
                 href={social.href}
@@ -90,7 +90,7 @@ export function Footer() {
         {/* Contact + Copyright */}
         <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-text-muted font-mono">
-            {CONTACT.email}
+            {CONTACT.email} &middot; WhatsApp: (85) 98840-5936
           </p>
           <p className="text-xs text-text-muted font-mono">
             &copy; {new Date().getFullYear()} RC Perito Digital

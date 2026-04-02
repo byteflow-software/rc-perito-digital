@@ -4,7 +4,7 @@ import { CONTACT } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative py-2 md:py-24 overflow-hidden">
+    <section className="relative py-2 md:pt-10 md:pb-24 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse md:flex-row items-center gap-3 md:gap-16">
           {/* Text */}
@@ -18,9 +18,11 @@ export function HeroSection() {
               Perito Digital e Especialista em Forense, OSINT e CTI
             </p>
             <p className="text-text-secondary text-sm leading-relaxed mb-4 md:mb-8 max-w-lg mx-auto md:mx-0">
-              Autor de dois livros, palestrante, Diretor de Comunicação da APECOF,
-              CEO da RC Perito Digital. 15+ anos de experiência em TI, cibersegurança
-              e investigação digital.
+              Autor dos livros &ldquo;OSINT do zero à Investigação Profissional&rdquo; e
+              &ldquo;Manual Prático de Provas Digitais&rdquo;, palestrante, Diretor de
+              Comunicação da APECOF, CEO da RC Perito Digital, professor de OSINT e
+              Segurança Cibernética. 15+ anos de experiência em TI, cibersegurança e
+              investigação digital. Fundador da COBRA e organizador da #semanaOSINT.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">

@@ -11,16 +11,62 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SOCIAL_LINKS = {
-  linkedin: "https://linkedin.com/in/romullocarvalho",
-  instagram: "https://instagram.com/romullo_carvalho",
-  youtube: "https://youtube.com/c/RomulloCarvalho",
-  x: "https://x.com/romullo_c",
-  facebook: "https://facebook.com/romullo.carvalho",
+  linkedin: "https://linkedin.com/in/romullo-carvalho",
+  instagram: "https://instagram.com/rcperitodigital",
+  youtube: "https://youtube.com/@rcperitodigital",
+  x: "",
+  facebook: "",
 } as const;
 
 export const CONTACT = {
   email: "contato@rcperitodigital.com.br",
+  emailApecof: "romullo.carvalho@apecof.org.br",
   whatsapp: "5585988405936",
+  whatsappFormatted: "(85) 98840-5936",
+} as const;
+
+export const HOTMART_CURSO_OSINT = "https://go.hotmart.com/T77442903S";
+
+export const BOOKS = [
+  {
+    title: "OSINT do zero a Investigacao Profissional",
+    publisher: "Editora Literando",
+    url: "https://amzn.to/3N9gvZg",
+  },
+  {
+    title: "Manual Pratico de Provas Digitais",
+    publisher: "Editora Revista dos Tribunais",
+    url: "https://amzn.to/3SlkEvv",
+  },
+  {
+    title: "Livro 3",
+    url: "https://amzn.to/4krgs92",
+  },
+  {
+    title: "Livro 4",
+    url: "https://amzn.to/44HOgqW",
+  },
+] as const;
+
+export const YOUTUBE_VIDEOS = {
+  semanaOsint: [
+    { title: "Direito e OSINT", id: "" },
+    { title: "Pericia e OSINT", id: "" },
+    { title: "CyberIntelligence e OSINT", id: "" },
+    { title: "Hacker e OSINT", id: "" },
+    { title: "Policia e OSINT", id: "" },
+    { title: "Jornalismo e OSINT", id: "" },
+  ],
+  workshops: [
+    { title: "Workshop - OSINT Aplicado a Pericia", id: "wPNyOz6-HzA" },
+    { title: "II Congresso Nacional de Direito Informatico e Novas Tecnologias", id: "gcH6mUUM5c0" },
+  ],
+  educacionais: [
+    { title: "Possibilidades em Fontes Abertas", id: "" },
+    { title: "Coleta em OSINT", id: "" },
+    { title: "Por Que Voce Precisa se Proteger na Internet?", id: "" },
+    { title: "Voce sabe o que e OSINT?", id: "" },
+  ],
 } as const;
 
 export const ARTICLE_CATEGORIES = [

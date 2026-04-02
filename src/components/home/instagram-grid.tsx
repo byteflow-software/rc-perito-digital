@@ -1,16 +1,16 @@
 import Image from "next/image";
+import { Play } from "lucide-react";
 import { SectionTitle } from "@/components/ui/section-title";
 import { Button } from "@/components/ui/button";
-import { SOCIAL_LINKS } from "@/lib/constants";
 
-interface InstaData {
+interface VideoData {
   id: string;
   imageUrl: string | null;
   instagramUrl: string;
   title: string;
 }
 
-export function InstagramGrid({ posts }: { posts: InstaData[] }) {
+export function InstagramGrid({ posts }: { posts: VideoData[] }) {
   if (posts.length === 0) return null;
 
   return (
@@ -18,24 +18,24 @@ export function InstagramGrid({ posts }: { posts: InstaData[] }) {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           action={
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer">
+            <a href="https://youtube.com/@rcperitodigital" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" size="sm" terminal>
-                FOLLOW @ROMULLO
+                INSCREVA-SE NO CANAL
               </Button>
             </a>
           }
         >
-          INSTAGRAM
+          VÍDEOS EDUCACIONAIS
         </SectionTitle>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {posts.slice(0, 8).map((post) => (
             <a
               key={post.id}
               href={post.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square border border-border hover:border-neon/40 transition-colors overflow-hidden bg-bg-card"
+              className="group relative aspect-video border border-border hover:border-neon/40 transition-colors overflow-hidden bg-bg-card"
             >
               {post.imageUrl ? (
                 <Image
@@ -43,14 +43,21 @@ export function InstagramGrid({ posts }: { posts: InstaData[] }) {
                   alt={post.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-mono text-text-muted text-xs">[ POST ]</span>
+                  <span className="font-mono text-text-muted text-xs">[ VIDEO ]</span>
                 </div>
               )}
-              <div className="absolute inset-0 bg-neon/0 group-hover:bg-neon/10 transition-colors" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Play className="w-10 h-10 text-neon fill-neon" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-[11px] font-mono text-text-primary line-clamp-2">
+                  {post.title}
+                </p>
+              </div>
             </a>
           ))}
         </div>

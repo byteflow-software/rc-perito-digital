@@ -20,7 +20,7 @@ export function ShortsCarousel({ shorts }: { shorts: ShortData[] }) {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           action={
-            <a href="https://youtube.com/c/RomulloCarvalho" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-neon hover:underline">
+            <a href="https://youtube.com/@rcperitodigital/shorts" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-neon hover:underline">
               VER MAIS &gt;
             </a>
           }

@@ -4,19 +4,22 @@ import { Card } from "@/components/ui/card";
 
 const works = [
   {
-    title: "A Importancia da Cadeia de Custodia",
+    title: "A Importância da Cadeia de Custódia",
     image: "/images/hero/work-1.webp",
     href: "#",
+    type: "PDF",
   },
   {
-    title: "Entrevista CEPED UFSM - O que a internet sabe sobre voce",
+    title: "O que a internet sabe sobre você — Entrevista CEPEDI UFSM",
     image: "/images/hero/work-2.webp",
-    href: "#",
+    href: "https://cepediufsm.wordpress.com",
+    type: "Entrevista",
   },
   {
-    title: "Relatorio de Investigacao Digital",
+    title: "APECOF no Congresso Nacional de Direito Informático — OAB-MS",
     image: "/images/hero/work-3.webp",
-    href: "#",
+    href: "https://apecof.org.br",
+    type: "Evento",
   },
 ];
 
@@ -37,7 +40,10 @@ export function SelectedWorks() {
                   <div className="absolute inset-0 bg-neon/0 group-hover:bg-neon/10 transition-colors duration-300 z-10" />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-mono text-sm text-text-primary group-hover:text-neon transition-colors line-clamp-2">
+                  <span className="font-mono text-[10px] text-neon uppercase tracking-wider">
+                    {work.type}
+                  </span>
+                  <h3 className="font-mono text-sm text-text-primary group-hover:text-neon transition-colors line-clamp-2 mt-1">
                     {work.title}
                   </h3>
                 </div>

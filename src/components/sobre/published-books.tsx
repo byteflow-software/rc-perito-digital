@@ -6,11 +6,13 @@ const books = [
     title: "OSINT do Zero à Investigação Profissional",
     publisher: "Editora Literando",
     description: "Guia completo de OSINT cobrindo desde os fundamentos até técnicas avançadas de investigação em fontes abertas.",
+    url: "https://amzn.to/3N9gvZg",
   },
   {
     title: "Manual Prático de Provas Digitais",
     publisher: "Editora Revista dos Tribunais",
     description: "Manual prático sobre coleta, preservação e análise de provas digitais para profissionais do direito e da perícia.",
+    url: "https://amzn.to/3SlkEvv",
   },
 ];
 
@@ -31,7 +33,9 @@ export function PublishedBooks() {
                 <h3 className="font-mono text-sm font-bold text-text-primary mb-1">{book.title}</h3>
                 <p className="text-neon text-xs font-mono mb-3">{book.publisher}</p>
                 <p className="text-text-secondary text-xs leading-relaxed mb-4">{book.description}</p>
-                <Button variant="secondary" size="sm" terminal>COMPRAR</Button>
+                <a href={book.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary" size="sm" terminal>COMPRAR NA AMAZON</Button>
+                </a>
               </div>
             </div>
           ))}

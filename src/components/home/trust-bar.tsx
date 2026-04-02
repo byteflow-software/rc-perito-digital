@@ -9,6 +9,9 @@ const partners = [
   "UNIFOR",
   "MM Forense",
   "WB Educacional",
+  "Search Perícia Digital",
+  "ONG Marias da Internet",
+  "Projeto Justiceiras",
 ];
 
 export function TrustBar() {

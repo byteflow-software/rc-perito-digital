@@ -1,14 +1,14 @@
 import { SectionTitle } from "@/components/ui/section-title";
 
 const milestones = [
-  { year: "2012", title: "Início na Carreira de TI", desc: "Suporte Técnico na FANOR - Faculdade Nordeste." },
-  { year: "2013", title: "SEJUS", desc: "Suporte Técnico na Secretaria de Justiça e Cidadania (2013-2016)." },
-  { year: "2017", title: "Segurança da Informação", desc: "SAP - Secretaria de Administração Penitenciária (2017-2021)." },
-  { year: "2019", title: "Graduação", desc: "Gestão de TI pela UNIFANOR Wyden." },
-  { year: "2020", title: "Pós-graduação", desc: "Áudio e Perícia em Imagem pela BLUEAD." },
-  { year: "2021", title: "RC Perito Digital", desc: "Fundação da RC Perito Digital + Apura Cyber Intelligence." },
-  { year: "2022", title: "ISH Tecnologia", desc: "Especialista em Inteligência de Ameaças." },
-  { year: "2023", title: "Curso OSINT", desc: "Pós-graduação em Cibersegurança Ofensiva (ACADI-TI) + Lançamento do Curso." },
+  { year: "2012", title: "Início na Carreira de TI", desc: "Suporte Técnico na FANOR — Faculdade Nordeste (09/2012 – 03/2013)." },
+  { year: "2013", title: "SEJUS", desc: "Suporte Técnico na Secretaria de Justiça e Cidadania (05/2013 – 05/2016)." },
+  { year: "2017", title: "Segurança da Informação", desc: "SAP — Secretaria de Administração Penitenciária (10/2017 – 06/2021)." },
+  { year: "2019", title: "Graduação em Gestão de TI", desc: "Graduado em Gestão de Tecnologia da Informação pela UNIFANOR Wyden." },
+  { year: "2020", title: "Pós-graduação & Docência", desc: "Audio and Image Forensics pela BLUEAD. Professor de Forense em Imagem e Internet na The Forense." },
+  { year: "2021", title: "RC Perito Digital & Apura", desc: "Fundação da RC Perito Digital. Cybersecurity Analyst Sales Engineer e CTI Analyst na Apura Cyber Intelligence. Professor na MM Forense e WB Educacional." },
+  { year: "2022", title: "ISH Tecnologia", desc: "Especialista de Inteligência de Ameaças na ISH Tecnologia. Fundação da COBRA — Comunidade de OSINT Brasileira." },
+  { year: "2024", title: "Reconhecimento & Ciberseg Ofensiva", desc: "Obras citadas por Ministros do STJ e STF. Pós-graduação em Cibersegurança Ofensiva pela ACADI-TI. 5ª turma do Curso de Formação em OSINT." },
 ];
 
 export function Timeline() {

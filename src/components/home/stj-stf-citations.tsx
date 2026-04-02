@@ -19,8 +19,8 @@ export function StjStfCitations() {
                     Citação em Acórdão do STJ
                   </h3>
                   <p className="text-text-secondary text-xs leading-relaxed">
-                    Trabalhos sobre cadeia de custódia e provas digitais foram
-                    referenciados em decisões de ministros do Superior Tribunal de Justiça.
+                    AgRg no RECURSO EM HABEAS CORPUS Nº 143.169 — Decisão do Ministro
+                    Ribeiro Dantas sobre grave quebra da cadeia de custódia em provas digitais.
                   </p>
                 </div>
               </div>
@@ -38,8 +38,8 @@ export function StjStfCitations() {
                     Referência em Decisão do STF
                   </h3>
                   <p className="text-text-secondary text-xs leading-relaxed">
-                    Publicações sobre investigação digital e OSINT citadas em
-                    fundamentações do Supremo Tribunal Federal.
+                    AG.REG. NO HABEAS CORPUS 171.557 PARANÁ — Referência em decisão
+                    do Supremo Tribunal Federal sobre provas digitais e investigação.
                   </p>
                 </div>
               </div>
