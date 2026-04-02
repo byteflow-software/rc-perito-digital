@@ -1,0 +1,138 @@
+.prose-cyber {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.prose-cyber h1,
+.prose-cyber h2,
+.prose-cyber h3,
+.prose-cyber h4 {
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  scroll-margin-top: 5rem;
+}
+
+.prose-cyber h1 { font-size: 1.75rem; }
+.prose-cyber h2 { font-size: 1.375rem; }
+.prose-cyber h3 { font-size: 1.125rem; }
+.prose-cyber h4 { font-size: 1rem; }
+
+.prose-cyber h2::before {
+  content: "> ";
+  color: var(--color-neon);
+}
+
+.prose-cyber p {
+  margin-bottom: 1.25em;
+}
+
+.prose-cyber a {
+  color: var(--color-neon);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+
+.prose-cyber a:hover {
+  opacity: 0.8;
+}
+
+.prose-cyber strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.prose-cyber ul,
+.prose-cyber ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+.prose-cyber ul { list-style-type: none; }
+
+.prose-cyber ul li::before {
+  content: "- ";
+  color: var(--color-neon);
+  font-family: var(--font-mono);
+}
+
+.prose-cyber ol { list-style-type: decimal; }
+
+.prose-cyber li {
+  margin-bottom: 0.5em;
+}
+
+.prose-cyber blockquote {
+  border-left: 2px solid var(--color-neon);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.prose-cyber code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--color-neon);
+  background: var(--color-bg-secondary);
+  padding: 0.125em 0.375em;
+  border: 1px solid var(--color-border);
+}
+
+.prose-cyber pre {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  padding: 1em;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.prose-cyber pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-neon);
+}
+
+.prose-cyber img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  margin: 1.5em 0;
+}
+
+.prose-cyber hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2em 0;
+}
+
+.prose-cyber table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.875rem;
+}
+
+.prose-cyber th,
+.prose-cyber td {
+  border: 1px solid var(--color-border);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.prose-cyber th {
+  background: var(--color-bg-secondary);
+  color: var(--color-neon);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
