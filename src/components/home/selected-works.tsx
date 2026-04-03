@@ -28,7 +28,7 @@ export function SelectedWorks() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle>TRABALHOS SELECIONADOS</SectionTitle>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {works.map((work) => (
             <a key={work.title} href={work.href} target="_blank" rel="noopener noreferrer" className="group block">
               <Card hover className="overflow-hidden h-full">
