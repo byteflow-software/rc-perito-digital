@@ -7,7 +7,7 @@ import { CertificationsGrid } from "@/components/sobre/certifications-grid";
 import { Communities } from "@/components/sobre/communities";
 import { Presentations } from "@/components/sobre/presentations";
 import { Languages } from "@/components/sobre/languages";
-import { PublishedBooks } from "@/components/sobre/published-books";
+
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildPersonJsonLd, buildBreadcrumbJsonLd } from "@/lib/seo";
 
@@ -34,7 +34,6 @@ export default function SobrePage() {
       <Communities />
       <Presentations />
       <Languages />
-      <PublishedBooks />
     </>
   );
 }
