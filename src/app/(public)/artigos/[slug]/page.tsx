@@ -292,12 +292,14 @@ export default async function ArtigoDetalhePage({ params }: Props) {
           </div>
         )}
 
-        {/* Content + TOC */}
+        {/* Mobile TOC */}
+        <div className="lg:hidden">
+          <TableOfContents content={article.content} />
+        </div>
+
+        {/* Content + Desktop TOC */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-10">
-          <div>
-            <TableOfContents content={article.content} />
-            <ArticleBody content={article.content} />
-          </div>
+          <ArticleBody content={article.content} />
           <aside className="hidden lg:block">
             <TableOfContents content={article.content} />
           </aside>
