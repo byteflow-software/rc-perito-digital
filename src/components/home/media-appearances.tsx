@@ -26,12 +26,12 @@ const otherVideos = [
 
 // TV appearances (CETV / Globoplay)
 const tvAppearances = [
-  { title: "Saiba como se proteger do golpe do pix agendado", source: "CETV 1ª Edição — Globoplay" },
-  { title: "24% da população brasileira caiu em golpe digital", source: "CETV 1ª Edição — Globoplay" },
-  { title: "Cuidado com o dinheiro fácil nas redes sociais", source: "CETV 1ª Edição — Globoplay" },
-  { title: "Operação contra fraudes bancárias é realizada no Ceará", source: "CETV 2ª Edição — Globoplay" },
-  { title: "Golpe dos Correios: veja como identificar golpes", source: "CETV 2ª Edição — Globoplay" },
-  { title: "Especialista alerta para golpe com a chave pix", source: "CETV 1ª Edição — Globoplay" },
+  { title: "Saiba como se proteger do golpe do pix agendado", source: "CETV 1ª Edição — Globoplay", url: "https://globoplay.globo.com/v/12557292/" },
+  { title: "24% da população brasileira caiu em golpe digital", source: "CETV 1ª Edição — Globoplay", url: "https://globoplay.globo.com/v/13330287/" },
+  { title: "Cuidado com o dinheiro fácil nas redes sociais", source: "CETV 1ª Edição — Globoplay", url: "https://globoplay.globo.com/v/12706798/" },
+  { title: "Operação contra fraudes bancárias é realizada no Ceará", source: "CETV 2ª Edição — Globoplay", url: "https://globoplay.globo.com/v/13481761/" },
+  { title: "Golpe dos Correios: veja como identificar golpes", source: "CETV 2ª Edição — Globoplay", url: "https://globoplay.globo.com/v/12821012/" },
+  { title: "Especialista alerta para golpe com a chave pix", source: "CETV 1ª Edição — Globoplay", url: "https://globoplay.globo.com/v/12835569/" },
 ];
 
 // Online media links
@@ -109,18 +109,21 @@ export function MediaAppearances() {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {tvAppearances.map((item) => (
-              <div
+              <a
                 key={item.title}
-                className="border border-border p-4 flex items-start gap-3"
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border border-border hover:border-neon/40 p-4 flex items-start gap-3 transition-colors"
               >
                 <Tv className="w-4 h-4 text-neon shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-mono text-xs text-text-primary line-clamp-2">
+                  <p className="font-mono text-xs text-text-primary group-hover:text-neon transition-colors line-clamp-2">
                     {item.title}
                   </p>
                   <p className="text-text-muted text-[10px] font-mono mt-1">{item.source}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
