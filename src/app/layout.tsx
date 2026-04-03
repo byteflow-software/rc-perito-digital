@@ -42,6 +42,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "RC Perito Digital",
+    images: [
+      {
+        url: "/images/og/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "RC Perito Digital - Romullo Carvalho",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
