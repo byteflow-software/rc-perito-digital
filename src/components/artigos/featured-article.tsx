@@ -1,9 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, Shield, Search, Terminal, Fingerprint } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import type { Article } from "@/types";
+
+const categoryIcons: Record<string, typeof Shield> = {
+  "forense-digital": Fingerprint,
+  "osint": Search,
+  "cti": Shield,
+  "ferramentas": Terminal,
+};
 
 interface FeaturedArticleProps {
   article: Pick<
@@ -28,8 +35,17 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
                 priority
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-mono text-text-muted text-sm">ARTIGO DESTAQUE</span>
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary">
+                <div className="absolute inset-0 opacity-10" style={{
+                  backgroundImage: "linear-gradient(var(--color-neon) 1px, transparent 1px), linear-gradient(90deg, var(--color-neon) 1px, transparent 1px)",
+                  backgroundSize: "40px 40px",
+                }} />
+                <div className="absolute top-4 left-4 w-8 h-8 border-t border-l border-neon/30" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-neon/30" />
+                {(() => {
+                  const Icon = categoryIcons[article.category] || Terminal;
+                  return <Icon className="w-16 h-16 text-neon/30 group-hover:text-neon/50 transition-colors" strokeWidth={1} />;
+                })()}
               </div>
             )}
           </div>

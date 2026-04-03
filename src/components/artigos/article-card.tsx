@@ -1,10 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock } from "lucide-react";
+import { Clock, Shield, Search, Terminal, Fingerprint } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import type { Article } from "@/types";
+
+const categoryIcons: Record<string, typeof Shield> = {
+  "forense-digital": Fingerprint,
+  "osint": Search,
+  "cti": Shield,
+  "ferramentas": Terminal,
+};
+
 
 interface ArticleCardProps {
   article: Pick<
@@ -27,8 +35,20 @@ export function ArticleCard({ article }: ArticleCardProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-mono text-text-muted text-xs">SEM IMAGEM</span>
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary">
+              {/* Decorative grid lines */}
+              <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: "linear-gradient(var(--color-neon) 1px, transparent 1px), linear-gradient(90deg, var(--color-neon) 1px, transparent 1px)",
+                backgroundSize: "40px 40px",
+              }} />
+              {/* Corner accents */}
+              <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-neon/30" />
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-neon/30" />
+              {/* Icon */}
+              {(() => {
+                const Icon = categoryIcons[article.category] || Terminal;
+                return <Icon className="w-10 h-10 text-neon/30 group-hover:text-neon/50 transition-colors" strokeWidth={1} />;
+              })()}
             </div>
           )}
           <div className="absolute top-3 left-3">
