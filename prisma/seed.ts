@@ -25,9 +25,9 @@ async function main() {
       id: "default",
       siteTitle: "RC Perito Digital",
       metaDescription:
-        "Romullo Carvalho - Perito Digital e Especialista em Forense, OSINT e CTI. Blog, cursos, investigacao digital e inteligencia cibernetica.",
+        "Romullo Carvalho - Perito Digital e Especialista em Forense, OSINT e CTI. Blog, cursos, investigação digital e inteligência cibernética.",
       primaryKeywords: JSON.parse(
-        '["perito digital","OSINT","forense digital","CTI","ciberseguranca"]'
+        '["perito digital","OSINT","forense digital","CTI","cibersegurança"]'
       ),
       socialLinks: JSON.parse(
         '{"linkedin":"https://linkedin.com/in/romullocarvalho","instagram":"https://instagram.com/romullo_carvalho","youtube":"https://youtube.com/c/RomulloCarvalho","x":"https://x.com/romullo_c","facebook":"https://facebook.com/romullo.carvalho"}'
@@ -43,11 +43,11 @@ async function main() {
     update: {},
     create: {
       id: "book-osint",
-      title: "OSINT do Zero a Investigacao Profissional",
+      title: "OSINT do Zero à Investigação Profissional",
       author: "Romullo Carvalho",
       category: "osint",
       description:
-        "Guia completo de OSINT cobrindo desde os fundamentos ate tecnicas avancadas de investigacao em fontes abertas.",
+        "Guia completo de OSINT cobrindo desde os fundamentos até técnicas avançadas de investigação em fontes abertas.",
       showOnHomepage: true,
       status: "SHOW",
     },
@@ -58,11 +58,11 @@ async function main() {
     update: {},
     create: {
       id: "book-provas",
-      title: "Manual Pratico de Provas Digitais",
+      title: "Manual Prático de Provas Digitais",
       author: "Romullo Carvalho",
       category: "forensics",
       description:
-        "Manual pratico sobre coleta, preservacao e analise de provas digitais para profissionais do direito e da pericia.",
+        "Manual prático sobre coleta, preservação e análise de provas digitais para profissionais do direito e da perícia.",
       showOnHomepage: true,
       status: "SHOW",
     },
@@ -73,14 +73,14 @@ async function main() {
     where: { slug: "introducao-osint" },
     update: {},
     create: {
-      title: "Introducao a OSINT: O que e e como funciona",
+      title: "Introdução a OSINT: O que é e como funciona",
       slug: "introducao-osint",
       content:
-        "<h2>1. Definicao de OSINT</h2><p>OSINT (Open Source Intelligence) e a pratica de coletar e analisar informacoes de fontes publicamente disponiveis.</p><h2>2. Tipos de Fonte</h2><p>As fontes incluem redes sociais, registros publicos, forums e muito mais.</p>",
+        "<h2>1. Definição de OSINT</h2><p>OSINT (Open Source Intelligence) é a prática de coletar e analisar informações de fontes publicamente disponíveis.</p><h2>2. Tipos de Fonte</h2><p>As fontes incluem redes sociais, registros públicos, fóruns e muito mais.</p>",
       excerpt:
-        "Aprenda os fundamentos da inteligencia de fontes abertas e como aplica-la em investigacoes digitais.",
+        "Aprenda os fundamentos da inteligência de fontes abertas e como aplicá-la em investigações digitais.",
       category: "osint",
-      seoKeywords: JSON.parse('["OSINT","fontes abertas","investigacao"]'),
+      seoKeywords: JSON.parse('["OSINT","fontes abertas","investigação"]'),
       author: "Romullo Carvalho",
       status: "PUBLISHED",
       readingTime: 8,
