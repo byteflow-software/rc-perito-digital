@@ -5,6 +5,7 @@ import { StjStfCitations } from "@/components/home/stj-stf-citations";
 import { ShortsCarousel } from "@/components/home/shorts-carousel";
 import { InstagramGrid } from "@/components/home/instagram-grid";
 import { BooksCarousel } from "@/components/home/books-carousel";
+import { MediaAppearances } from "@/components/home/media-appearances";
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildPersonJsonLd, buildWebSiteJsonLd } from "@/lib/seo";
 
@@ -42,6 +43,7 @@ export default function HomePage() {
       <TrustBar />
       <SelectedWorks />
       <StjStfCitations />
+      <MediaAppearances />
       <ShortsCarousel shorts={mockShorts} />
       <InstagramGrid posts={mockInsta} />
       <BooksCarousel books={mockBooks} />

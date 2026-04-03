@@ -23,73 +23,51 @@ export const metadata: Metadata = {
   },
 };
 
-// Mock data until DB is connected
+// Real articles from romullocarvalho.com.br
 const mockArticles = [
   {
-    title: "Introdução à Forense Digital: Conceitos Fundamentais",
-    slug: "introducao-forense-digital",
+    title: "Hash, pra que te quero?",
+    slug: "hash-pra-que-te-quero",
     excerpt:
-      "Entenda os conceitos básicos da forense digital e como essa disciplina é essencial para investigações modernas.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "forense-digital",
-    readingTime: 8,
-    publishedAt: new Date("2024-12-15"),
-  },
-  {
-    title: "OSINT para Investigações Corporativas",
-    slug: "osint-investigacoes-corporativas",
-    excerpt:
-      "Como utilizar técnicas de inteligência de fontes abertas para due diligence e investigações empresariais.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "osint",
-    readingTime: 12,
-    publishedAt: new Date("2024-11-20"),
-  },
-  {
-    title: "Ferramentas Essenciais para Análise de Metadados",
-    slug: "ferramentas-analise-metadados",
-    excerpt:
-      "Guia prático das principais ferramentas para extração e análise de metadados em investigações digitais.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "ferramentas",
-    readingTime: 6,
-    publishedAt: new Date("2024-10-05"),
-  },
-  {
-    title: "Cyber Threat Intelligence: Frameworks e Metodologias",
-    slug: "cti-frameworks-metodologias",
-    excerpt:
-      "Panorama dos principais frameworks de CTI e como aplicá-los na prática de inteligência cibernética.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "cti",
-    readingTime: 15,
-    publishedAt: new Date("2024-09-18"),
-  },
-  {
-    title: "Cadeia de Custódia Digital: Boas Práticas",
-    slug: "cadeia-custodia-digital",
-    excerpt:
-      "A importância da cadeia de custódia em evidências digitais e como manter a integridade das provas.",
+      "O termo hash é cada vez mais presente em laudos periciais, decisões judiciais e documentos técnicos. Compreender o que significa e como se aplica esse conceito é essencial para interpretar evidências digitais.",
     featuredImage: null,
     featuredImageAlt: null,
     category: "forense-digital",
     readingTime: 10,
-    publishedAt: new Date("2024-08-22"),
+    publishedAt: new Date("2025-03-15"),
   },
   {
-    title: "Investigação em Redes Sociais: SOCMINT na Prática",
-    slug: "investigacao-redes-sociais-socmint",
+    title: "Metadados e a Prova Digital",
+    slug: "metadados-e-a-prova-digital",
     excerpt:
-      "Técnicas e ferramentas para investigação em redes sociais com foco em inteligência e evidências.",
+      "No universo da prova digital, compreender e analisar metadados é tão importante quanto entender o conteúdo principal de um arquivo. Muitas vezes, eles são a chave para confirmar a autenticidade de uma evidência.",
     featuredImage: null,
     featuredImageAlt: null,
-    category: "osint",
-    readingTime: 9,
-    publishedAt: new Date("2024-07-30"),
+    category: "forense-digital",
+    readingTime: 8,
+    publishedAt: new Date("2025-02-20"),
+  },
+  {
+    title: "POP SENASP 2013",
+    slug: "pop-senasp-2013",
+    excerpt:
+      "O POP — Procedimento Operacional Padrão é um documento da SENASP que padroniza as ações das forças de segurança pública no Brasil, incluindo apreensão e custódia de evidências digitais.",
+    featuredImage: null,
+    featuredImageAlt: null,
+    category: "forense-digital",
+    readingTime: 6,
+    publishedAt: new Date("2025-01-10"),
+  },
+  {
+    title: "POP SENASP 2024",
+    slug: "pop-senasp-2024",
+    excerpt:
+      "O POP SENASP 2024 é a atualização do Procedimento Operacional Padrão, incorporando inovações tecnológicas e atualizando diretrizes de preservação de evidências digitais à luz da Lei 13.964/2019.",
+    featuredImage: null,
+    featuredImageAlt: null,
+    category: "forense-digital",
+    readingTime: 5,
+    publishedAt: new Date("2025-01-05"),
   },
 ];
 

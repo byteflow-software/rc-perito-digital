@@ -11,7 +11,7 @@ export function AboutHero() {
             </h1>
             <blockquote className="border-l-2 border-neon pl-4 mb-3 md:mb-6 italic text-text-secondary text-sm">
               &ldquo;Mesmo uma imprensa regimentada repetidamente trairá os interesses de sua
-              nação para um observador mais bem informado.&rdquo;
+              nação para um observador meticuloso.&rdquo;
               <cite className="block mt-1 text-text-muted not-italic">&mdash; William Donovan</cite>
             </blockquote>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
@@ -23,14 +23,15 @@ export function AboutHero() {
             </p>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               Professor do curso de Segurança Cibernética com Foco em DEVOPS da UNIFOR e
-              professor de OSINT. Graduado em Gestão de TI pela UNIFANOR, pós-graduado em
-              Audio and Image Forensics pela BLUEAD, pós-graduando em Cibersegurança
-              Ofensiva pela ACADI-TI.
+              professor de OSINT. Mais de 15 anos de experiência em TI. Graduado em Gestão de
+              TI pela UNIFANOR, pós-graduado em Auditoria de TI pela UNIFOR, pós-graduando em
+              Direito Digital pelo IBMEC, MBA em Inteligência Artificial pela FIAP.
             </p>
             <p className="text-text-secondary text-sm leading-relaxed">
-              Possui certificações CNSE, CSAE, White Belt, Fundamentos LGPD, e certificações
-              Axonius. Fundador da Comunidade de OSINT Brasileira (COBRA), organizador da
-              #semanaOSINT, voluntário na ONG Marias da Internet e projeto Justiceiras.
+              Perito em Computação Forense pela CertFOr, certificado em Fundamentos em
+              Cibersegurança e Analista de Cibersegurança pela IBSEC, Fundamental and
+              Advanced Technical Certification Axonius. Fundador da COBRA, organizador da
+              #semanaOSINT, voluntário na ONG Marias da Internet e Projeto Justiceiras.
             </p>
           </div>
           <div className="shrink-0">

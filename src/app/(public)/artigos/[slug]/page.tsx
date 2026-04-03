@@ -14,75 +14,176 @@ import { buildArticleJsonLd, buildBreadcrumbJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { AUTHOR_NAME } from "@/lib/constants";
 
-// Mock article data until DB is connected
-const mockArticle = {
-  title: "Introdução à Forense Digital: Conceitos Fundamentais",
-  slug: "introducao-forense-digital",
-  excerpt:
-    "Entenda os conceitos básicos da forense digital e como essa disciplina é essencial para investigações modernas.",
-  content: `
-    <h2 id="o-que-e-forense-digital">O que é Forense Digital</h2>
-    <p>A forense digital é a disciplina que aplica técnicas de investigação e análise para coletar e preservar evidências de dispositivos digitais de maneira que seja legalmente admissível.</p>
-    <p>Com o crescimento exponencial dos crimes cibernéticos, a demanda por profissionais qualificados em forense digital nunca foi tão alta. Este campo combina conhecimentos de tecnologia da informação, direito e investigação criminal.</p>
+// Real articles from romullocarvalho.com.br
+const articlesData: Record<string, {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  featuredImage: string | null;
+  featuredImageAlt: string | null;
+  category: string;
+  readingTime: number;
+  author: string;
+  publishedAt: Date;
+  seoKeywords: string[];
+  metaTitle: string | null;
+  metaDescription: string | null;
+}> = {
+  "hash-pra-que-te-quero": {
+    title: "Hash, pra que te quero?",
+    slug: "hash-pra-que-te-quero",
+    excerpt: "O termo hash é cada vez mais presente em laudos periciais, decisões judiciais e documentos técnicos. Compreender o que significa é essencial para interpretar evidências digitais.",
+    content: `
+      <h2 id="o-que-e-hash">O que é Hash</h2>
+      <p>O termo hash é cada vez mais presente em laudos periciais, decisões judiciais e documentos técnicos relacionados à prova digital. Para operadores do direito — advogados, promotores, juízes, defensores públicos e acadêmicos — compreender de forma clara o que significa e como se aplica esse conceito é essencial para interpretar e avaliar corretamente evidências digitais.</p>
+      <p>Em essência, um hash é o resultado da aplicação de uma função matemática unidirecional que transforma qualquer conjunto de dados — como um arquivo, imagem, mensagem ou disco inteiro — em uma sequência fixa de caracteres alfanuméricos, chamada de "valor hash" ou "digest". Essa sequência é única para cada entrada: qualquer alteração, por menor que seja, no conteúdo original, resulta em um hash completamente diferente. Por isso, o hash funciona como uma <strong>impressão digital eletrônica</strong> do dado.</p>
 
-    <h2 id="principios-fundamentais">Princípios Fundamentais</h2>
-    <p>Existem quatro princípios fundamentais que guiam toda investigação forense digital:</p>
-    <ul>
-      <li>Preservação da evidência original</li>
-      <li>Documentação completa do processo</li>
-      <li>Cadeia de custódia ininterrupta</li>
-      <li>Reprodutibilidade dos resultados</li>
-    </ul>
+      <h2 id="algoritmos-utilizados">Algoritmos Utilizados</h2>
+      <p>Entre os algoritmos mais utilizados estão o <strong>SHA-256</strong> (Secure Hash Algorithm) e o <strong>MD5</strong> (Message Digest Algorithm 5). O SHA-256 gera um hash de 256 bits e é considerado seguro para fins periciais. Já o MD5, embora ainda amplamente utilizado, apresenta vulnerabilidades conhecidas — como a possibilidade teórica de colisões — que devem ser consideradas ao avaliar sua aplicação isolada como prova de integridade.</p>
 
-    <h3 id="cadeia-de-custodia">Cadeia de Custódia</h3>
-    <p>A cadeia de custódia é o registro cronológico e documentado da posse, controle, transferência, análise e disposição de evidências físicas ou eletrônicas.</p>
-    <blockquote>A integridade da evidência digital depende diretamente da qualidade da cadeia de custódia mantida durante toda a investigação.</blockquote>
+      <h2 id="normas-tecnicas">Normas Técnicas e Legislação</h2>
+      <p>A <strong>ABNT NBR ISO/IEC 27037</strong>, norma técnica que orienta a identificação, coleta, aquisição e preservação de evidências digitais, recomenda expressamente o uso de funções hash como método de verificação da integridade. De acordo com a norma, o hash deve ser calculado no momento da aquisição da evidência e registrado de forma documentada.</p>
+      <p>A <strong>RFC 3227</strong>, referência internacional para coleta e preservação de evidências digitais, também enfatiza a necessidade de calcular hashes durante o processo de coleta, como forma de preservar a integridade das provas.</p>
+      <p>O <strong>Código de Processo Penal</strong> brasileiro, nos artigos 158-A a 158-F, introduzidos pela Lei 13.964/2019, estabelece a cadeia de custódia como exigência legal para a validade das provas. No caso de evidências digitais, a integridade é frequentemente demonstrada por meio de hashes.</p>
+      <p>Os <strong>POPs do SENASP</strong> de 2013 e de 2024, voltados à padronização de procedimentos periciais no Brasil, também incorporam o cálculo de hash como etapa obrigatória nas fases de coleta e preservação de evidências digitais.</p>
 
-    <h2 id="ferramentas-essenciais">Ferramentas Essenciais</h2>
-    <p>Algumas das ferramentas mais utilizadas na forense digital incluem:</p>
-    <pre><code># Exemplo de hash para verificação de integridade
-sha256sum imagem_disco.dd
-md5sum imagem_disco.dd</code></pre>
-    <p>A verificação de hashes é fundamental para garantir que a evidência não foi alterada durante o processo de análise.</p>
+      <h2 id="caso-pratico">Caso Prático: HC 828.054/RN</h2>
+      <blockquote>Um exemplo concreto da relevância do hash pode ser encontrado no julgamento do HC 828.054/RN pelo Superior Tribunal de Justiça, no qual se destacou que a ausência de registro de procedimentos e a inexistência de cálculo e preservação de valores hash configuraram uma grave quebra da cadeia de custódia.</blockquote>
+      <p>Sem essa documentação, não havia como comprovar que os dados apresentados em juízo eram efetivamente os mesmos encontrados nos equipamentos apreendidos. A decisão resultou na anulação dessas provas digitais.</p>
 
-    <h2 id="conclusao">Conclusão</h2>
-    <p>A forense digital é um campo em constante evolução que exige atualização contínua. Dominar os conceitos fundamentais é essencial para qualquer profissional que deseje atuar nesta área.</p>
-  `,
-  featuredImage: null,
-  featuredImageAlt: null,
-  category: "forense-digital",
-  readingTime: 8,
-  author: AUTHOR_NAME,
-  publishedAt: new Date("2024-12-15"),
-  seoKeywords: ["forense digital", "investigação digital", "evidência digital"],
-  metaTitle: null,
-  metaDescription: null,
-};
-
-const mockRelated = [
-  {
-    title: "Cadeia de Custódia Digital: Boas Práticas",
-    slug: "cadeia-custodia-digital",
-    excerpt:
-      "A importância da cadeia de custódia em evidências digitais e como manter a integridade das provas.",
+      <h2 id="conclusao">Conclusão</h2>
+      <p>Não basta alegar que uma evidência digital é autêntica; é preciso comprovar sua integridade com base em métodos técnicos confiáveis. O cálculo de um hash no momento da coleta, repetido e comparado em cada etapa subsequente, é um desses métodos, e sua ausência fragiliza a credibilidade da prova.</p>
+    `,
     featuredImage: null,
     featuredImageAlt: null,
     category: "forense-digital",
     readingTime: 10,
-    publishedAt: new Date("2024-08-22"),
+    author: AUTHOR_NAME,
+    publishedAt: new Date("2025-03-15"),
+    seoKeywords: ["hash", "forense digital", "cadeia de custódia", "SHA-256", "MD5", "evidência digital"],
+    metaTitle: null,
+    metaDescription: null,
   },
-  {
-    title: "Ferramentas Essenciais para Análise de Metadados",
-    slug: "ferramentas-analise-metadados",
-    excerpt:
-      "Guia prático das principais ferramentas para extração e análise de metadados em investigações digitais.",
+  "metadados-e-a-prova-digital": {
+    title: "Metadados e a Prova Digital",
+    slug: "metadados-e-a-prova-digital",
+    excerpt: "No universo da prova digital, compreender e analisar metadados é tão importante quanto entender o conteúdo principal de um arquivo.",
+    content: `
+      <h2 id="o-que-sao-metadados">O que são Metadados</h2>
+      <p>No universo da prova digital, compreender e analisar metadados é tão importante quanto entender o conteúdo principal de um arquivo. Muitas vezes, eles são a chave para confirmar a autenticidade, a origem e a integridade de uma evidência eletrônica.</p>
+      <p>Metadados são <strong>dados sobre dados</strong>. São informações embutidas automaticamente em arquivos digitais — como documentos, imagens, vídeos, e-mails e registros de sistemas — que descrevem características do conteúdo, como data de criação, autor, localização geográfica, dispositivo utilizado, versão do software, entre outros.</p>
+
+      <h2 id="exemplos-comuns">Exemplos Comuns de Metadados</h2>
+      <ul>
+        <li><strong>Fotografia:</strong> modelo da câmera, data/hora da captura, coordenadas GPS e configurações de exposição (dados EXIF)</li>
+        <li><strong>Documento Word ou PDF:</strong> nome do autor, datas de criação e modificação, revisões realizadas e comentários ocultos</li>
+        <li><strong>E-mail:</strong> cabeçalhos (headers) que indicam o caminho percorrido pela mensagem entre servidores</li>
+        <li><strong>Arquivos de sistema:</strong> registros de log e timestamps de acesso, criação e modificação</li>
+      </ul>
+
+      <h2 id="classificacao">Classificação dos Metadados</h2>
+      <p>Os metadados podem ser classificados em três categorias principais:</p>
+      <ul>
+        <li><strong>Descritivos</strong> — identificam o conteúdo, como título e autor</li>
+        <li><strong>Estruturais</strong> — descrevem a organização do arquivo</li>
+        <li><strong>Administrativos</strong> — registram informações de gerenciamento, como permissões e datas</li>
+      </ul>
+
+      <h2 id="importancia-pericial">Importância Pericial</h2>
+      <p>A análise de metadados é uma etapa fundamental em perícias digitais, sendo referenciada tanto pela <strong>ABNT NBR ISO/IEC 27037</strong> quanto pela <strong>RFC 3227</strong>. Em muitos casos, os metadados podem revelar contradições entre o que se afirma sobre um documento e o que os dados técnicos efetivamente demonstram.</p>
+      <blockquote>Um documento supostamente criado em uma data pode conter metadados que indicam criação em data diferente, o que pode sugerir manipulação.</blockquote>
+      <p>Os artigos 158-A a 158-F do CPP exigem que a cadeia de custódia preserve não apenas o conteúdo principal da evidência, mas também todas as informações técnicas associadas a ela — o que inclui os metadados.</p>
+
+      <h2 id="conclusao">Conclusão</h2>
+      <p>Em processos judiciais, metadados já foram determinantes para comprovar fraudes documentais, confirmar autorias, estabelecer linhas do tempo e demonstrar a manipulação de evidências. Advogados, promotores e juízes que compreendem a natureza e a importância dos metadados estão mais bem equipados para avaliar criticamente as provas digitais apresentadas.</p>
+    `,
     featuredImage: null,
     featuredImageAlt: null,
-    category: "ferramentas",
-    readingTime: 6,
-    publishedAt: new Date("2024-10-05"),
+    category: "forense-digital",
+    readingTime: 8,
+    author: AUTHOR_NAME,
+    publishedAt: new Date("2025-02-20"),
+    seoKeywords: ["metadados", "prova digital", "EXIF", "perícia digital", "forense digital"],
+    metaTitle: null,
+    metaDescription: null,
   },
-];
+  "pop-senasp-2013": {
+    title: "POP SENASP 2013",
+    slug: "pop-senasp-2013",
+    excerpt: "O POP — Procedimento Operacional Padrão é um documento da SENASP que padroniza as ações das forças de segurança pública no Brasil.",
+    content: `
+      <h2 id="o-que-e">O que é o POP SENASP 2013?</h2>
+      <p>O POP — Procedimento Operacional Padrão é um documento elaborado pela Secretaria Nacional de Segurança Pública (SENASP), vinculado ao Ministério da Justiça, que tem como objetivo padronizar as ações e procedimentos das forças de segurança pública no Brasil.</p>
+      <p>Em 2013, a SENASP publicou versões atualizadas desses POPs, com foco em qualificar a atuação policial e de segurança pública, oferecendo instruções claras e unificadas para situações recorrentes no dia a dia operacional.</p>
+
+      <h2 id="objetivos">Objetivos do POP SENASP 2013</h2>
+      <ul>
+        <li>Padronizar procedimentos adotados pelas polícias e demais órgãos de segurança</li>
+        <li>Garantir segurança jurídica e técnica aos agentes durante suas atividades</li>
+        <li>Minimizar riscos para a população e para os próprios agentes</li>
+        <li>Melhorar a eficiência e a qualidade do serviço público</li>
+        <li>Unificar a linguagem e conduta entre diferentes corporações em âmbito nacional</li>
+      </ul>
+
+      <h2 id="temas-abordados">Temas Abordados</h2>
+      <p>O POP SENASP 2013 traz instruções para diversos cenários de atuação, como:</p>
+      <ul>
+        <li>Abordagem a pessoas e veículos</li>
+        <li>Uso progressivo da força</li>
+        <li>Atendimento a ocorrências com reféns</li>
+        <li>Preservação de local de crime</li>
+        <li>Apreensão e custódia de evidências (incluindo digitais)</li>
+        <li>Procedimentos em blitz e operações ostensivas</li>
+      </ul>
+
+      <h2 id="importancia">Importância</h2>
+      <p>O POP SENASP 2013 representou um avanço significativo na profissionalização da segurança pública brasileira. Seu conteúdo serve como referência técnica e jurídica para agentes, peritos e operadores do direito, e continua sendo utilizado como base comparativa mesmo após a publicação do POP SENASP 2024.</p>
+    `,
+    featuredImage: null,
+    featuredImageAlt: null,
+    category: "forense-digital",
+    readingTime: 6,
+    author: AUTHOR_NAME,
+    publishedAt: new Date("2025-01-10"),
+    seoKeywords: ["POP SENASP", "segurança pública", "procedimento operacional", "evidências digitais"],
+    metaTitle: null,
+    metaDescription: null,
+  },
+  "pop-senasp-2024": {
+    title: "POP SENASP 2024",
+    slug: "pop-senasp-2024",
+    excerpt: "O POP SENASP 2024 é a atualização do Procedimento Operacional Padrão, incorporando inovações tecnológicas e atualizando diretrizes de preservação de evidências digitais.",
+    content: `
+      <h2 id="o-que-e">O que é o POP SENASP 2024</h2>
+      <p>O POP SENASP 2024 é a atualização do Procedimento Operacional Padrão publicado pela Secretaria Nacional de Segurança Pública (SENASP), ligada ao Ministério da Justiça e Segurança Pública do Brasil. Trata-se de um documento técnico-normativo que define diretrizes, rotinas e boas práticas a serem seguidas pelas forças de segurança pública em todo o território nacional.</p>
+
+      <h2 id="normativa">Normativa e Estrutura</h2>
+      <p>O POP SENASP 2024 foi instituído com base em normativas internas do Ministério da Justiça e diretrizes da SENASP, e organizado em módulos temáticos que cobrem desde procedimentos operacionais básicos até técnicas avançadas de investigação e perícia.</p>
+
+      <h2 id="objetivos">Objetivos Principais</h2>
+      <ul>
+        <li>Padronizar procedimentos operacionais das forças de segurança pública em âmbito nacional</li>
+        <li>Incorporar inovações tecnológicas e metodológicas surgidas desde o POP de 2013</li>
+        <li>Atualizar diretrizes de preservação de evidências digitais à luz da Lei 13.964/2019</li>
+        <li>Reforçar o cumprimento da cadeia de custódia conforme artigos 158-A a 158-F do CPP</li>
+        <li>Alinhar procedimentos com normas internacionais (ISO/IEC 27037, RFC 3227)</li>
+      </ul>
+
+      <h2 id="importancia">Importância</h2>
+      <p>O POP SENASP 2024 representa a evolução necessária dos procedimentos de segurança pública para acompanhar os avanços tecnológicos e jurídicos. Sua adoção fortalece a segurança jurídica das operações policiais e periciais, especialmente no tratamento de evidências digitais, área em constante transformação.</p>
+    `,
+    featuredImage: null,
+    featuredImageAlt: null,
+    category: "forense-digital",
+    readingTime: 5,
+    author: AUTHOR_NAME,
+    publishedAt: new Date("2025-01-05"),
+    seoKeywords: ["POP SENASP 2024", "segurança pública", "evidências digitais", "cadeia de custódia", "Lei 13.964/2019"],
+    metaTitle: null,
+    metaDescription: null,
+  },
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -91,26 +192,26 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  // TODO: Replace with Prisma query
-  if (slug !== mockArticle.slug) {
-    return { title: "Artigo nao encontrado" };
+  const article = articlesData[slug];
+  if (!article) {
+    return { title: "Artigo não encontrado" };
   }
 
-  const title = mockArticle.metaTitle || mockArticle.title;
-  const description = mockArticle.metaDescription || mockArticle.excerpt;
+  const title = article.metaTitle || article.title;
+  const description = article.metaDescription || article.excerpt;
 
   return {
     title,
     description,
-    keywords: mockArticle.seoKeywords,
+    keywords: article.seoKeywords,
     openGraph: {
       title: `${title} | RC Perito Digital`,
       description,
       type: "article",
-      publishedTime: mockArticle.publishedAt?.toISOString(),
-      authors: [mockArticle.author],
-      images: mockArticle.featuredImage
-        ? [{ url: mockArticle.featuredImage }]
+      publishedTime: article.publishedAt?.toISOString(),
+      authors: [article.author],
+      images: article.featuredImage
+        ? [{ url: article.featuredImage }]
         : undefined,
     },
   };
@@ -122,12 +223,11 @@ const siteUrl =
 export default async function ArtigoDetalhePage({ params }: Props) {
   const { slug } = await params;
 
-  // TODO: Replace with Prisma query
-  if (slug !== mockArticle.slug) {
+  const article = articlesData[slug];
+  if (!article) {
     notFound();
   }
 
-  const article = mockArticle;
   const articleUrl = `${siteUrl}/artigos/${article.slug}`;
 
   const breadcrumbs = [
@@ -209,7 +309,7 @@ export default async function ArtigoDetalhePage({ params }: Props) {
         </div>
 
         {/* Related articles */}
-        <RelatedArticles articles={mockRelated} />
+        <RelatedArticles articles={Object.values(articlesData).filter((a) => a.slug !== slug).slice(0, 2)} />
 
         {/* Newsletter */}
         <div className="mt-16">

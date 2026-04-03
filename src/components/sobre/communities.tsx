@@ -3,7 +3,7 @@ import { SectionTitle } from "@/components/ui/section-title";
 import { Card, CardContent } from "@/components/ui/card";
 
 const orgs = [
-  { name: "APECOF", role: "Vice-diretor de Comunicação e Eventos", desc: "Associação Nacional dos Peritos em Computação Forense" },
+  { name: "APECOF", role: "Diretor de Comunicação", desc: "Associação Nacional dos Peritos em Computação Forense" },
   { name: "COBRA", role: "Fundador", desc: "Comunidade de OSINT Brasileira" },
   { name: "#semanaOSINT", role: "Organizador", desc: "Série de eventos e vídeos educacionais sobre OSINT" },
   { name: "Criminal Player", role: "Expert", desc: "Comunidade de profissionais de investigação e forense" },
