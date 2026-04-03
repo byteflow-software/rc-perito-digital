@@ -36,11 +36,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Romullo Carvalho" }],
   creator: "Romullo Carvalho",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.rcperitodigital.com.br"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://rc-perito-digital.vercel.app"
   ),
   openGraph: {
     type: "website",
     locale: "pt_BR",
+    url: "/",
     siteName: "RC Perito Digital",
     images: [
       {
