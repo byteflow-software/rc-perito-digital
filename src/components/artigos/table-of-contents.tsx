@@ -58,7 +58,7 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   return (
     <>
       {/* Mobile dropdown */}
-      <div className="lg:hidden mb-6 relative z-20">
+      <div className="lg:hidden mb-6 relative z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 w-full p-3 border border-border bg-bg-card font-mono text-xs text-text-secondary"
@@ -68,25 +68,31 @@ export function TableOfContents({ content }: TableOfContentsProps) {
           <span className="ml-auto text-neon">{isOpen ? "[-]" : "[+]"}</span>
         </button>
         {isOpen && (
-          <nav className="absolute left-0 right-0 border border-t-0 border-border bg-bg-card p-3 shadow-lg shadow-black/40">
-            <ul className="space-y-1">
-              {headings.map(({ id, text, level }) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "block py-1 text-xs font-mono transition-colors hover:text-neon",
-                      level === 3 && "pl-4",
-                      activeId === id ? "text-neon" : "text-text-muted"
-                    )}
-                  >
-                    {text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <>
+            <div
+              className="fixed inset-0 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            <nav className="absolute left-0 right-0 z-50 border border-t-0 border-border bg-bg-card p-3 shadow-lg shadow-black/60">
+              <ul className="space-y-1">
+                {headings.map(({ id, text, level }) => (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "block py-1 text-xs font-mono transition-colors hover:text-neon",
+                        level === 3 && "pl-4",
+                        activeId === id ? "text-neon" : "text-text-muted"
+                      )}
+                    >
+                      {text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </>
         )}
       </div>
 
