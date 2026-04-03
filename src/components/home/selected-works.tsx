@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FileText, ExternalLink } from "lucide-react";
 import { SectionTitle } from "@/components/ui/section-title";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,12 +40,15 @@ export function SelectedWorks() {
                       src={work.previewUrl}
                       className="absolute inset-0 w-full h-full pointer-events-none"
                       title={work.title}
+                      loading="lazy"
                     />
                   ) : (
-                    <img
+                    <Image
                       src={work.previewUrl}
                       alt={work.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   )}
                   <div className="absolute inset-0 bg-neon/0 group-hover:bg-neon/10 transition-colors duration-300 z-10 flex items-center justify-center">

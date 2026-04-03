@@ -41,12 +41,14 @@ export function HeroSection() {
           {/* Photo */}
           <div className="flex-shrink-0">
             <Image
-              src="/images/perfil_glitched.png"
+              src="/images/perfil_glitched.webp"
               alt="Romullo Carvalho - Perito Digital"
-              width={400}
-              height={400}
+              width={544}
+              height={544}
               className="w-[90vw] h-[90vw] max-w-[24rem] md:max-w-none md:w-[34rem] md:h-[34rem] object-contain"
               priority
+              fetchPriority="high"
+              sizes="(max-width: 768px) 90vw, 544px"
             />
           </div>
         </div>

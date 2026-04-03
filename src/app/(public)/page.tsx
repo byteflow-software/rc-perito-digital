@@ -1,13 +1,16 @@
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/home/hero-section";
 import { TrustBar } from "@/components/home/trust-bar";
-import { SelectedWorks } from "@/components/home/selected-works";
-import { StjStfCitations } from "@/components/home/stj-stf-citations";
-import { ShortsCarousel } from "@/components/home/shorts-carousel";
-import { InstagramGrid } from "@/components/home/instagram-grid";
-import { BooksCarousel } from "@/components/home/books-carousel";
-import { MediaAppearances } from "@/components/home/media-appearances";
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildPersonJsonLd, buildWebSiteJsonLd } from "@/lib/seo";
+
+// Lazy-load below-fold sections to reduce initial JS bundle
+const SelectedWorks = dynamic(() => import("@/components/home/selected-works").then(m => ({ default: m.SelectedWorks })));
+const StjStfCitations = dynamic(() => import("@/components/home/stj-stf-citations").then(m => ({ default: m.StjStfCitations })));
+const MediaAppearances = dynamic(() => import("@/components/home/media-appearances").then(m => ({ default: m.MediaAppearances })));
+const ShortsCarousel = dynamic(() => import("@/components/home/shorts-carousel").then(m => ({ default: m.ShortsCarousel })));
+const InstagramGrid = dynamic(() => import("@/components/home/instagram-grid").then(m => ({ default: m.InstagramGrid })));
+const BooksCarousel = dynamic(() => import("@/components/home/books-carousel").then(m => ({ default: m.BooksCarousel })));
 
 // TODO: Replace with real Prisma queries when DB is connected
 const mockShorts = [

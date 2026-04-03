@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, ExternalLink, Tv, Mic } from "lucide-react";
 import { SectionTitle } from "@/components/ui/section-title";
 import { Card } from "@/components/ui/card";
@@ -65,6 +66,7 @@ function VideoCard({ id, title }: { id: string; title: string }) {
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            loading="lazy"
             className="absolute inset-0 w-full h-full"
           />
         ) : (
@@ -72,10 +74,12 @@ function VideoCard({ id, title }: { id: string; title: string }) {
             onClick={() => setPlaying(true)}
             className="absolute inset-0 w-full h-full group"
           >
-            <img
+            <Image
               src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
               alt={title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
               <div className="w-14 h-14 border-2 border-neon bg-bg-primary/80 flex items-center justify-center group-hover:scale-110 transition-transform">

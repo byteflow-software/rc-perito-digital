@@ -65,6 +65,12 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="preconnect" href="https://yy7vynyrezpvfapo.public.blob.vercel-storage.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
+        <link rel="dns-prefetch" href="https://globoplay.globo.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
         {children}
         <Toaster

@@ -24,9 +24,6 @@ export function Header() {
 
   return (
     <>
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:bg-neon focus:text-bg-primary focus:p-3 focus:font-mono">
-        Pular para o conteudo
-      </a>
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
