@@ -9,20 +9,7 @@ const works = [
     href: "https://drive.google.com/file/d/1KvZdhbk8bdM-BKS4mxGqf0Od_xHSVKW0/view",
     previewUrl: "https://drive.google.com/file/d/1KvZdhbk8bdM-BKS4mxGqf0Od_xHSVKW0/preview",
     type: "PDF Acadêmico",
-  },
-  {
-    title: "Trabalho Acadêmico II",
-    desc: "Documento técnico sobre forense digital e investigação.",
-    href: "https://drive.google.com/file/d/1QNch6PKcCPba0ldFp5U0tvu56dBZjpS1/view",
-    previewUrl: "https://drive.google.com/file/d/1QNch6PKcCPba0ldFp5U0tvu56dBZjpS1/preview",
-    type: "PDF Acadêmico",
-  },
-  {
-    title: "Trabalho Acadêmico III",
-    desc: "Documento técnico sobre perícia e provas digitais.",
-    href: "https://drive.google.com/file/d/1D69ca1eESYsRFT7YIntQ_LNLpY_LwbkX/view",
-    previewUrl: "https://drive.google.com/file/d/1D69ca1eESYsRFT7YIntQ_LNLpY_LwbkX/preview",
-    type: "PDF Acadêmico",
+    author: "Romullo Wheryko Rodrigues de Carvalho",
   },
 ];
 
@@ -60,6 +47,7 @@ export function SelectedWorks() {
                     {work.title}
                   </h3>
                   <p className="text-text-muted text-xs mt-1 line-clamp-2">{work.desc}</p>
+                  <p className="text-text-muted text-[10px] font-mono mt-2">{work.author}</p>
                 </CardContent>
               </Card>
             </a>
