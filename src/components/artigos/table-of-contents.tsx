@@ -58,17 +58,17 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   return (
     <>
       {/* Mobile dropdown */}
-      <div className="lg:hidden mb-6">
+      <div className="lg:hidden mb-6 relative z-20">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 w-full p-3 border border-border bg-bg-card font-mono text-xs text-text-secondary"
         >
           <List className="w-4 h-4 text-neon" />
-          INDICE
+          ÍNDICE
           <span className="ml-auto text-neon">{isOpen ? "[-]" : "[+]"}</span>
         </button>
         {isOpen && (
-          <nav className="border border-t-0 border-border bg-bg-card p-3">
+          <nav className="absolute left-0 right-0 border border-t-0 border-border bg-bg-card p-3 shadow-lg shadow-black/40">
             <ul className="space-y-1">
               {headings.map(({ id, text, level }) => (
                 <li key={id}>
@@ -93,7 +93,7 @@ export function TableOfContents({ content }: TableOfContentsProps) {
       {/* Desktop sticky sidebar */}
       <nav className="hidden lg:block sticky top-24">
         <h4 className="font-mono text-xs text-neon uppercase tracking-widest mb-3">
-          &gt; Indice
+          &gt; Índice
         </h4>
         <ul className="space-y-1 border-l border-border">
           {headings.map(({ id, text, level }) => (
