@@ -26,13 +26,6 @@ const mockInsta = [
   { id: "4", imageUrl: "https://i.ytimg.com/vi/xwh4NmoP9ao/hqdefault.jpg", instagramUrl: "https://youtube.com/watch?v=xwh4NmoP9ao", title: "Você sabe o que é OSINT?" },
 ];
 
-const mockBooks = [
-  { id: "1", title: "OSINT do Zero à Investigação Profissional", coverImage: "https://m.media-amazon.com/images/I/71a-PnFEqlL._SY466_.jpg", affiliateLink: "https://amzn.to/3N9gvZg" },
-  { id: "2", title: "Manual Prático de Provas Digitais", coverImage: "https://m.media-amazon.com/images/I/51hN2PXrp4L._SY466_.jpg", affiliateLink: "https://amzn.to/3SlkEvv" },
-  { id: "3", title: "Livro 3", coverImage: null, affiliateLink: "https://amzn.to/4krgs92" },
-  { id: "4", title: "Livro 4", coverImage: null, affiliateLink: "https://amzn.to/44HOgqW" },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -46,7 +39,7 @@ export default function HomePage() {
       <MediaAppearances />
       <ShortsCarousel shorts={mockShorts} />
       <InstagramGrid posts={mockInsta} />
-      <BooksCarousel books={mockBooks} />
+      <BooksCarousel />
     </>
   );
 }
