@@ -43,8 +43,8 @@ export function HeroSection() {
             <Image
               src="/images/perfil_glitched.webp"
               alt="Romullo Carvalho - Perito Digital"
-              width={544}
-              height={544}
+              width={800}
+              height={800}
               className="w-[90vw] h-[90vw] max-w-[24rem] md:max-w-none md:w-[34rem] md:h-[34rem] object-contain"
               priority
               fetchPriority="high"

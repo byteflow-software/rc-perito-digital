@@ -39,17 +39,17 @@ export function Header() {
               <Image
                 src="/images/logos/logo-desktop.png"
                 alt="RC Perito Digital"
-                width={220}
-                height={48}
-                className="hidden sm:block h-16 w-auto"
+                width={64}
+                height={64}
+                className="hidden sm:block h-16 w-16"
                 priority
               />
               <Image
                 src="/images/logos/logo-mobile.png"
                 alt="RC Perito Digital"
-                width={48}
-                height={48}
-                className="sm:hidden h-10 w-auto"
+                width={40}
+                height={40}
+                className="sm:hidden h-10 w-10"
                 priority
               />
             </Link>

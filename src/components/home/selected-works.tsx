@@ -8,8 +8,7 @@ const works = [
     title: "A Importância da Cadeia de Custódia",
     desc: "Visão geral sobre Cadeia de Custódia no âmbito de evidências informáticas, baseado no Código de Processo Penal.",
     href: "https://drive.google.com/file/d/1KvZdhbk8bdM-BKS4mxGqf0Od_xHSVKW0/view",
-    previewUrl: "https://drive.google.com/file/d/1KvZdhbk8bdM-BKS4mxGqf0Od_xHSVKW0/preview",
-    previewType: "iframe" as const,
+    previewUrl: "https://yy7vynyrezpvfapo.public.blob.vercel-storage.com/works/cadeia-custodia-preview.jpg",
     type: "PDF Acadêmico",
     author: "Romullo Wheryko Rodrigues de Carvalho",
   },
@@ -18,7 +17,6 @@ const works = [
     desc: "Entrevista com Romullo Carvalho sobre OSINT, privacidade digital e o que suas informações públicas revelam sobre você.",
     href: "https://cepediufsm.wordpress.com/2021/05/20/o-que-a-internet-sabe-sobre-voce-entrevista-com-romullo-carvalho-perito-digital/",
     previewUrl: "https://cepediufsm.wordpress.com/wp-content/uploads/2021/05/2021-05-27-thumbnail-cepedi-webinario.png?w=1080",
-    previewType: "image" as const,
     type: "Webinário — CEPEDI",
     author: "Romullo Carvalho",
   },
@@ -35,22 +33,13 @@ export function SelectedWorks() {
             <a key={work.title} href={work.href} target="_blank" rel="noopener noreferrer" className="group block">
               <Card hover className="overflow-hidden h-full">
                 <div className="relative aspect-[4/3] bg-bg-card border-b border-border">
-                  {work.previewType === "iframe" ? (
-                    <iframe
-                      src={work.previewUrl}
-                      className="absolute inset-0 w-full h-full pointer-events-none"
-                      title={work.title}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <Image
-                      src={work.previewUrl}
-                      alt={work.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  )}
+                  <Image
+                    src={work.previewUrl}
+                    alt={work.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                   <div className="absolute inset-0 bg-neon/0 group-hover:bg-neon/10 transition-colors duration-300 z-10 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-bg-primary/80 border border-neon px-3 py-1.5 flex items-center gap-2">
                       <ExternalLink className="w-3 h-3 text-neon" />
