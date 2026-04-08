@@ -22,7 +22,7 @@ export function TrustBar() {
           {[...partners, ...partners].map((name, i) => (
             <span
               key={i}
-              className="mx-8 text-text-muted font-mono text-xs uppercase tracking-widest shrink-0"
+              className="mx-8 text-text-secondary font-mono text-xs uppercase tracking-widest shrink-0"
             >
               {name}
             </span>
