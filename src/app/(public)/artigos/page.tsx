@@ -8,6 +8,8 @@ import { CategoryFilter } from "@/components/artigos/category-filter";
 import { ArticleCard } from "@/components/artigos/article-card";
 import { Pagination } from "@/components/ui/pagination";
 import { NewsletterCta } from "@/components/shared/newsletter-cta";
+import { SelectedWorks } from "@/components/home/selected-works";
+import { StjStfCitations } from "@/components/home/stj-stf-citations";
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
@@ -150,6 +152,9 @@ export default async function ArtigosPage({ searchParams }: Props) {
           <NewsletterCta />
         </div>
       </div>
+
+      <SelectedWorks />
+      <StjStfCitations />
     </>
   );
 }

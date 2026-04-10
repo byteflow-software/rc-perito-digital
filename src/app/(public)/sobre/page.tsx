@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { AboutHero } from "@/components/sobre/about-hero";
-import { MissionValues } from "@/components/sobre/mission-values";
 import { Timeline } from "@/components/sobre/timeline";
 import { CertificationsGrid } from "@/components/sobre/certifications-grid";
 import { Communities } from "@/components/sobre/communities";
@@ -28,7 +27,6 @@ export default function SobrePage() {
       </div>
 
       <AboutHero />
-      <MissionValues />
       <Timeline />
       <CertificationsGrid />
       <Communities />

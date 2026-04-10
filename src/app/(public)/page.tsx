@@ -1,12 +1,11 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/home/hero-section";
 import { TrustBar } from "@/components/home/trust-bar";
+import { MissionValues } from "@/components/sobre/mission-values";
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildPersonJsonLd, buildWebSiteJsonLd } from "@/lib/seo";
 
 // Lazy-load below-fold sections to reduce initial JS bundle
-const SelectedWorks = dynamic(() => import("@/components/home/selected-works").then(m => ({ default: m.SelectedWorks })));
-const StjStfCitations = dynamic(() => import("@/components/home/stj-stf-citations").then(m => ({ default: m.StjStfCitations })));
 const MediaAppearances = dynamic(() => import("@/components/home/media-appearances").then(m => ({ default: m.MediaAppearances })));
 const ShortsCarousel = dynamic(() => import("@/components/home/shorts-carousel").then(m => ({ default: m.ShortsCarousel })));
 const InstagramGrid = dynamic(() => import("@/components/home/instagram-grid").then(m => ({ default: m.InstagramGrid })));
@@ -37,8 +36,7 @@ export default function HomePage() {
 
       <HeroSection />
       <TrustBar />
-      <SelectedWorks />
-      <StjStfCitations />
+      <MissionValues />
       <MediaAppearances />
       <ShortsCarousel shorts={mockShorts} />
       <InstagramGrid posts={mockInsta} />
