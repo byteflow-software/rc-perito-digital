@@ -34,14 +34,17 @@ export function AboutHero() {
               #semanaOSINT, voluntário na ONG Marias da Internet e Projeto Justiceiras.
             </p>
           </div>
-          <div className="shrink-0">
-            <Image
-              src="/images/perfil.png"
-              alt="Romullo Carvalho"
-              width={400}
-              height={400}
-              className="w-[85vw] h-[85vw] max-w-[22rem] md:max-w-none md:w-[30rem] md:h-[30rem] object-contain"
-            />
+          <div className="shrink-0 relative">
+            <div className="relative w-[70vw] max-w-[20rem] md:max-w-none md:w-[24rem] aspect-[4/3] rounded-lg overflow-hidden border border-neon/30 shadow-[0_0_30px_rgba(0,255,65,0.15)]">
+              <Image
+                src="/images/sobre.png"
+                alt="Romullo Carvalho"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 70vw, 384px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </div>

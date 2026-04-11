@@ -39,17 +39,19 @@ export function HeroSection() {
           </div>
 
           {/* Photo */}
-          <div className="flex-shrink-0">
-            <Image
-              src="/images/perfil_glitched.webp"
-              alt="Romullo Carvalho - Perito Digital"
-              width={800}
-              height={800}
-              className="w-[90vw] h-[90vw] max-w-[24rem] md:max-w-none md:w-[34rem] md:h-[34rem] object-contain"
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 768px) 90vw, 544px"
-            />
+          <div className="flex-shrink-0 relative">
+            <div className="relative w-[70vw] max-w-[18rem] md:max-w-none md:w-[26rem] aspect-[3/4] rounded-lg overflow-hidden border border-neon/30 shadow-[0_0_30px_rgba(0,255,65,0.15)]">
+              <Image
+                src="/images/hero.png"
+                alt="Romullo Carvalho - Perito Digital"
+                fill
+                className="object-cover object-top"
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 70vw, 416px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </div>
