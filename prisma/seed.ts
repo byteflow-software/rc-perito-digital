@@ -4,20 +4,18 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create admin user
   const passwordHash = await bcrypt.hash("admin123", 12);
-  await prisma.user.upsert({
+
+  await prisma.adminUser.upsert({
     where: { email: "contato@rcperitodigital.com.br" },
     update: {},
     create: {
       name: "Romullo Carvalho",
       email: "contato@rcperitodigital.com.br",
       passwordHash,
-      role: "ADMIN",
     },
   });
 
-  // Create default site config
   await prisma.siteConfig.upsert({
     where: { id: "default" },
     update: {},
@@ -26,18 +24,18 @@ async function main() {
       siteTitle: "RC Perito Digital",
       metaDescription:
         "Romullo Carvalho - Perito Digital e Especialista em Forense, OSINT e CTI. Blog, cursos, investigação digital e inteligência cibernética.",
-      primaryKeywords: JSON.parse(
-        '["perito digital","OSINT","forense digital","CTI","cibersegurança"]'
-      ),
-      socialLinks: JSON.parse(
-        '{"linkedin":"https://linkedin.com/in/romullocarvalho","instagram":"https://instagram.com/romullo_carvalho","youtube":"https://youtube.com/c/RomulloCarvalho","x":"https://x.com/romullo_c","facebook":"https://facebook.com/romullo.carvalho"}'
-      ),
+      primaryKeywords: ["perito digital", "OSINT", "forense digital", "CTI", "cibersegurança"],
+      socialLinks: {
+        linkedin: "https://linkedin.com/in/romullo-carvalho",
+        instagram: "https://instagram.com/rcperitodigital",
+        youtube: "https://youtube.com/@rcperitodigital",
+      },
       contactEmail: "contato@rcperitodigital.com.br",
+      whatsapp: "5585988405936",
       timezone: "America/Fortaleza",
     },
   });
 
-  // Create published books (author's own books)
   await prisma.book.upsert({
     where: { id: "book-osint" },
     update: {},
@@ -68,7 +66,12 @@ async function main() {
     },
   });
 
-  // Sample article
+  const osintTag = await prisma.tag.upsert({
+    where: { slug: "osint" },
+    update: {},
+    create: { name: "OSINT", slug: "osint" },
+  });
+
   await prisma.article.upsert({
     where: { slug: "introducao-osint" },
     update: {},
@@ -80,15 +83,32 @@ async function main() {
       excerpt:
         "Aprenda os fundamentos da inteligência de fontes abertas e como aplicá-la em investigações digitais.",
       category: "osint",
-      seoKeywords: JSON.parse('["OSINT","fontes abertas","investigação"]'),
+      seoKeywords: ["OSINT", "fontes abertas", "investigação"],
       author: "Romullo Carvalho",
       status: "PUBLISHED",
       readingTime: 8,
       publishedAt: new Date("2024-05-05"),
+      tags: { connect: [{ id: osintTag.id }] },
     },
   });
 
-  console.log("Seed completed successfully");
+  // Seed PageSeo
+  const pages = [
+    { pageKey: "home", title: "RC Perito Digital — Forense, OSINT e CTI", description: "Romullo Carvalho, Perito Digital e especialista em Forense Digital, OSINT e CTI." },
+    { pageKey: "artigos", title: "Artigos — RC Perito Digital", description: "Blog de Forense Digital, OSINT e CTI por Romullo Carvalho." },
+    { pageKey: "sobre", title: "Sobre — RC Perito Digital", description: "Conheça Romullo Carvalho, Perito Digital, autor e especialista em OSINT." },
+    { pageKey: "curso-osint", title: "Curso OSINT — RC Perito Digital", description: "Curso prático de OSINT por Romullo Carvalho. Do zero à investigação profissional." },
+  ];
+
+  for (const p of pages) {
+    await prisma.pageSeo.upsert({
+      where: { pageKey: p.pageKey },
+      update: {},
+      create: p,
+    });
+  }
+
+  console.log("Seed concluído com sucesso");
 }
 
 main()
@@ -96,6 +116,4 @@ main()
     console.error(e);
     process.exit(1);
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .finally(() => prisma.$disconnect());

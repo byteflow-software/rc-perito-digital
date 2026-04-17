@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
-import { auth } from "./auth";
+import { getCurrentUser } from "./auth";
 
 export async function requireAuth() {
-  const session = await auth();
-  if (!session?.user) {
-    return null;
-  }
-  return session;
+  const user = await getCurrentUser();
+  if (!user) return null;
+  return user;
 }
 
 export function jsonError(message: string, status = 400) {

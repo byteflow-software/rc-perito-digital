@@ -1,6 +1,10 @@
-export type ArticleStatus = "DRAFT" | "SCHEDULED" | "PUBLISHED";
-export type ContentStatus = "LIVE" | "PENDING" | "HIDDEN";
-export type BookStatus = "SHOW" | "HIDE";
+export type ActionResult<T = undefined> =
+  | { success: true; data?: T }
+  | { success: false; error: string };
+
+export type ArticleStatus = "DRAFT" | "SCHEDULED" | "PUBLISHED" | "ARCHIVED";
+export type MediaStatus = "LIVE" | "HIDDEN";
+export type BookStatus = "SHOW" | "HIDDEN";
 
 export interface Article {
   id: string;
@@ -15,6 +19,7 @@ export interface Article {
   metaTitle: string | null;
   metaDescription: string | null;
   author: string;
+  featured: boolean;
   status: ArticleStatus;
   viewsCount: number;
   readingTime: number;
@@ -22,6 +27,7 @@ export interface Article {
   publishedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
+  tags?: { id: string; name: string; slug: string }[];
 }
 
 export interface Short {
@@ -31,7 +37,7 @@ export interface Short {
   youtubeUrl: string;
   thumbnailUrl: string | null;
   categoryTags: string[];
-  status: ContentStatus;
+  status: MediaStatus;
   dateAdded: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -45,7 +51,7 @@ export interface InstagramPost {
   imageUrl: string | null;
   captionOverride: string | null;
   categoryTags: string[];
-  status: ContentStatus;
+  status: MediaStatus;
   dateAdded: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -82,17 +88,23 @@ export interface SiteConfig {
   metaDescription: string;
   primaryKeywords: string[];
   googleAnalyticsId: string | null;
-  socialLinks: {
-    linkedin?: string;
-    instagram?: string;
-    youtube?: string;
-    x?: string;
-    facebook?: string;
-  };
+  socialLinks: Record<string, string>;
   logoUrl: string | null;
   faviconUrl: string | null;
   contactEmail: string | null;
+  whatsapp: string | null;
   timezone: string;
   maintenanceMode: boolean;
+  updatedAt: Date;
+}
+
+export interface PageSeo {
+  id: string;
+  pageKey: string;
+  title: string;
+  description: string;
+  ogTitle: string | null;
+  ogDesc: string | null;
+  noIndex: boolean;
   updatedAt: Date;
 }

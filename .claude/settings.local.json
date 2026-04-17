@@ -24,7 +24,24 @@
       "Bash(cp \"arquivos de apoio/logo/cone - branco e verde.png\" public/images/logos/favicon.png)",
       "Bash(find /c/Users/ryanm/OneDrive/Documentos/GitHub/rc-perito-digital/src -type f \\\\\\(-name *.ts -o -name *.tsx -o -name *.js -o -name *.json \\\\\\))",
       "Bash(pnpm remove:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:cepediufsm.wordpress.com)",
+      "WebFetch(domain:romullocarvalho.com.br)",
+      "Bash(mkdir -p /tmp/book-covers)",
+      "Read(//tmp/**)",
+      "Bash(pnpm dev:*)",
+      "mcp__mempalace__mempalace_status",
+      "mcp__mempalace__mempalace_kg_add",
+      "mcp__mempalace__mempalace_list_rooms",
+      "Bash(where uvx *)",
+      "Bash(where uv *)",
+      "Bash(where python *)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude --force --ignore-agent-tools)",
+      "Bash(PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude --force --ignore-agent-tools)",
+      "Bash(pnpm prisma *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npx ts-node *)",
+      "Bash(pnpm exec *)"
     ]
   }
 }
