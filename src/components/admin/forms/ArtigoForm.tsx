@@ -84,7 +84,7 @@ export function ArtigoForm({ artigo, id, isEdit }: Props) {
       status: (artigo?.status as FormData["status"]) ?? "DRAFT",
       scheduledAt: artigo?.scheduledAt ? new Date(artigo.scheduledAt).toISOString().slice(0, 16) : "",
       author: artigo?.author ?? "Romullo Carvalho",
-      seoKeywords: (artigo?.seoKeywords as string[]) ?? [],
+      seoKeywords: Array.isArray(artigo?.seoKeywords) ? (artigo.seoKeywords as string[]) : [],
       metaTitle: artigo?.metaTitle ?? "",
       metaDescription: artigo?.metaDescription ?? "",
     },

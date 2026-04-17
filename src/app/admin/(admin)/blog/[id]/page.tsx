@@ -19,7 +19,7 @@ export default async function AdminBlogEditPage({ params }: Props) {
       <ArtigoForm
         artigo={{
           ...artigo,
-          seoKeywords: artigo.seoKeywords as string[],
+          seoKeywords: Array.isArray(artigo.seoKeywords) ? (artigo.seoKeywords as string[]) : [],
         }}
         id={id}
         isEdit
