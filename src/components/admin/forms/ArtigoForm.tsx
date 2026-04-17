@@ -64,6 +64,7 @@ export function ArtigoForm({ artigo, id, isEdit }: Props) {
   const [saving, setSaving] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [tagInput, setTagInput] = useState("");
+  const [kwInput, setKwInput] = useState("");
 
   const {
     register, handleSubmit, setValue, watch, control,
@@ -287,9 +288,7 @@ export function ArtigoForm({ artigo, id, isEdit }: Props) {
               <Controller
                 name="seoKeywords"
                 control={control}
-                render={({ field }) => {
-                  const [kw, setKw] = useState("");
-                  return (
+                render={({ field }) => (
                     <div>
                       <div className="flex flex-wrap gap-1.5 mb-2">
                         {(field.value ?? []).map((k) => (
@@ -301,22 +300,21 @@ export function ArtigoForm({ artigo, id, isEdit }: Props) {
                       </div>
                       <input
                         type="text"
-                        value={kw}
-                        onChange={(e) => setKw(e.target.value)}
+                        value={kwInput}
+                        onChange={(e) => setKwInput(e.target.value)}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === ",") {
                             e.preventDefault();
-                            const t = kw.trim();
+                            const t = kwInput.trim();
                             if (t && !field.value.includes(t)) field.onChange([...field.value, t]);
-                            setKw("");
+                            setKwInput("");
                           }
                         }}
                         className={inputClass}
                         placeholder="Keyword + Enter"
                       />
                     </div>
-                  );
-                }}
+                  )}
               />
             </div>
 
