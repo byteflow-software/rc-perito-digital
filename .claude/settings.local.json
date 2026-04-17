@@ -41,7 +41,10 @@
       "Bash(pnpm prisma *)",
       "Bash(echo \"exit: $?\")",
       "Bash(npx ts-node *)",
-      "Bash(pnpm exec *)"
+      "Bash(pnpm exec *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(npx vercel *)",
+      "Bash(pnpm start *)"
     ]
   }
 }

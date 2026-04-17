@@ -42,3 +42,5 @@ next-env.d.ts
 
 # project support files
 /arquivos de apoio/
+
+.vercel

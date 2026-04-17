@@ -1,8 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { FileText, Video, Camera, BookOpen, Users, HelpCircle } from "lucide-react";
 import { StatsCard } from "@/components/admin/stats-card";
-import { DataTable } from "@/components/admin/data-table";
-import { Badge } from "@/components/ui/badge";
+import { RecentArticlesTable } from "@/components/admin/RecentArticlesTable";
 import Link from "next/link";
 
 async function getStats() {
@@ -25,13 +24,6 @@ async function getRecentArticles() {
   });
 }
 
-const statusVariant: Record<string, "published" | "draft" | "pending"> = {
-  PUBLISHED: "published",
-  DRAFT: "draft",
-  SCHEDULED: "pending",
-  ARCHIVED: "draft",
-};
-
 export default async function AdminDashboardPage() {
   const [stats, recentArticles] = await Promise.all([getStats(), getRecentArticles()]);
 
@@ -42,44 +34,6 @@ export default async function AdminDashboardPage() {
     { label: "Livros", value: stats.books, icon: BookOpen },
     { label: "Newsletter", value: stats.subscribers, icon: Users },
     { label: "FAQ", value: stats.faqs, icon: HelpCircle },
-  ];
-
-  const columns = [
-    {
-      key: "title",
-      label: "Título",
-      render: (item: (typeof recentArticles)[0]) => (
-        <Link href={`/admin/blog/${item.id}`} className="font-mono text-text-primary text-xs hover:text-neon transition-colors">
-          {item.title}
-        </Link>
-      ),
-    },
-    {
-      key: "status",
-      label: "Status",
-      className: "w-28",
-      render: (item: (typeof recentArticles)[0]) => (
-        <Badge variant={statusVariant[item.status] ?? "default"}>{item.status}</Badge>
-      ),
-    },
-    {
-      key: "publishedAt",
-      label: "Publicação",
-      className: "w-32",
-      render: (item: (typeof recentArticles)[0]) => (
-        <span className="font-mono text-xs text-text-muted">
-          {item.publishedAt ? new Date(item.publishedAt).toLocaleDateString("pt-BR") : "—"}
-        </span>
-      ),
-    },
-    {
-      key: "viewsCount",
-      label: "Views",
-      className: "w-20 text-right",
-      render: (item: (typeof recentArticles)[0]) => (
-        <span className="font-mono text-xs text-text-muted">{item.viewsCount}</span>
-      ),
-    },
   ];
 
   return (
@@ -101,13 +55,7 @@ export default async function AdminDashboardPage() {
           Ver todos →
         </Link>
       </div>
-      <DataTable
-        columns={columns}
-        data={recentArticles}
-        keyExtractor={(item) => item.id}
-        onRowClick={() => {}}
-        emptyMessage="Nenhum artigo criado ainda."
-      />
+      <RecentArticlesTable articles={recentArticles} />
     </div>
   );
 }
