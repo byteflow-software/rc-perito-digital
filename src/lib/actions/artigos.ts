@@ -150,3 +150,80 @@ export async function listArtigos() {
     },
   });
 }
+
+const publicArticleSelect = {
+  id: true,
+  title: true,
+  slug: true,
+  excerpt: true,
+  featuredImage: true,
+  featuredImageAlt: true,
+  category: true,
+  readingTime: true,
+  publishedAt: true,
+  author: true,
+} as const;
+
+export async function listPublishedArtigos({
+  category,
+  query,
+  skip = 0,
+  take,
+}: {
+  category?: string;
+  query?: string;
+  skip?: number;
+  take?: number;
+}) {
+  const where = {
+    status: "PUBLISHED" as const,
+    publishedAt: { lte: new Date() },
+    ...(category ? { category } : {}),
+    ...(query
+      ? {
+          OR: [
+            { title: { contains: query, mode: "insensitive" as const } },
+            { excerpt: { contains: query, mode: "insensitive" as const } },
+          ],
+        }
+      : {}),
+  };
+
+  const [items, total] = await Promise.all([
+    prisma.article.findMany({
+      where,
+      orderBy: { publishedAt: "desc" },
+      skip,
+      take,
+      select: publicArticleSelect,
+    }),
+    prisma.article.count({ where }),
+  ]);
+
+  return { items, total };
+}
+
+export async function getPublishedArtigoBySlug(slug: string) {
+  return prisma.article.findFirst({
+    where: {
+      slug,
+      status: "PUBLISHED",
+      publishedAt: { lte: new Date() },
+    },
+    include: { tags: true },
+  });
+}
+
+export async function getRelatedArtigos(slug: string, category: string, limit = 3) {
+  return prisma.article.findMany({
+    where: {
+      slug: { not: slug },
+      status: "PUBLISHED",
+      publishedAt: { lte: new Date() },
+      category,
+    },
+    orderBy: { publishedAt: "desc" },
+    take: limit,
+    select: publicArticleSelect,
+  });
+}

@@ -29,6 +29,32 @@ enum BookStatus {
   HIDDEN
 }
 
+enum MediaAppearanceType {
+  TV
+  ARTICLE
+  INTERVIEW
+  PODCAST
+  PRESENTATION
+}
+
+enum VideoSection {
+  SEMANA_OSINT
+  PALESTRAS_CONGRESSOS
+}
+
+enum CourseTrack {
+  THEORETICAL
+  PRACTICAL
+}
+
+enum CourtKind {
+  STJ
+  STF
+  TST
+  TSE
+  OUTRO
+}
+
 // ============================================
 // AUTH
 // ============================================
@@ -167,4 +193,238 @@ model NewsletterSubscriber {
   email        String   @unique
   status       String   @default("ACTIVE")
   subscribedAt DateTime @default(now())
+}
+
+// ============================================
+// HOME & SOBRE CONTENT (EDITÁVEL)
+// ============================================
+
+model HeroContent {
+  id             String   @id @default("default")
+  label          String   @default("> WELCOME")
+  name           String   @default("ROMULLO")
+  nameHighlight  String   @default("CARVALHO")
+  subtitle       String   @default("Perito Digital e Especialista em Forense, OSINT e CTI")
+  bio            String   @default("") @db.Text
+  photoUrl       String?
+  photoAlt       String?
+  primaryCtaText String   @default("CONTATO")
+  primaryCtaUrl  String   @default("")
+  secondaryCtaText String @default("SAIBA MAIS")
+  secondaryCtaUrl  String @default("/sobre")
+  updatedAt      DateTime @updatedAt
+}
+
+model AboutContent {
+  id           String   @id @default("default")
+  title        String   @default("Romullo Carvalho")
+  quote        String   @default("") @db.Text
+  quoteAuthor  String   @default("")
+  paragraph1   String   @default("") @db.Text
+  paragraph2   String   @default("") @db.Text
+  paragraph3   String   @default("") @db.Text
+  photoUrl     String?
+  photoAlt     String?
+  updatedAt    DateTime @updatedAt
+}
+
+model Partner {
+  id           String   @id @default(cuid())
+  name         String
+  logoUrl      String?
+  url          String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([active, displayOrder])
+}
+
+model MissionValue {
+  id           String   @id @default(cuid())
+  icon         String   @default("Shield")
+  title        String
+  description  String   @db.Text
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([active, displayOrder])
+}
+
+model Milestone {
+  id           String   @id @default(cuid())
+  year         String
+  title        String
+  description  String   @db.Text
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model Certification {
+  id           String   @id @default(cuid())
+  name         String
+  issuer       String?
+  area         String   @default("geral")
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([area, displayOrder])
+}
+
+model Community {
+  id           String   @id @default(cuid())
+  name         String
+  role         String
+  description  String   @default("") @db.Text
+  url          String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model Presentation {
+  id           String   @id @default(cuid())
+  event        String
+  year         String
+  url          String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model SpokenLanguage {
+  id           String   @id @default(cuid())
+  name         String
+  level        String
+  skills       String   @default("")
+  percentage   Int      @default(0)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model MediaAppearance {
+  id           String              @id @default(cuid())
+  title        String
+  source       String
+  url          String
+  type         MediaAppearanceType
+  displayOrder Int                 @default(0)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@index([type, displayOrder])
+}
+
+model VideoFeature {
+  id           String       @id @default(cuid())
+  title        String
+  youtubeId    String
+  section      VideoSection
+  displayOrder Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([section, displayOrder])
+}
+
+model SelectedWork {
+  id           String   @id @default(cuid())
+  title        String
+  description  String   @db.Text
+  type         String   @default("Documento")
+  author       String   @default("")
+  url          String
+  previewUrl   String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model CourtCitation {
+  id           String    @id @default(cuid())
+  court        CourtKind
+  title        String
+  description  String    @db.Text
+  documentUrl  String
+  displayOrder Int       @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([displayOrder])
+}
+
+// ============================================
+// CURSO OSINT (EDITÁVEL)
+// ============================================
+
+model CourseInfo {
+  id                String   @id @default("default")
+  tagline           String   @default("#OSINT — CURSO FORMAÇÃO EM OSINT")
+  heroTitle         String   @default("Curso Formação em")
+  heroHighlight     String   @default("OSINT")
+  description1      String   @default("") @db.Text
+  description2      String   @default("") @db.Text
+  description3      String   @default("") @db.Text
+  hoursLabel        String   @default("60h+")
+  hoursDescription  String   @default("de aula")
+  groupLabel        String   @default("5ª")
+  groupDescription  String   @default("turma")
+  certificateLabel  String   @default("Certificado")
+  certificateDescription String @default("de 60h")
+  instructor        String   @default("Romullo Carvalho")
+  ctaUrl            String   @default("https://go.hotmart.com/T77442903S")
+  ctaLabel          String   @default("INSCREVA-SE AGORA")
+  priceLabel        String   @default("Primeiro Mês")
+  priceValue        String   @default("R$6,95")
+  priceOriginal     String   @default("R$14,90")
+  priceSuffix       String   @default("por mês")
+  updatedAt         DateTime @updatedAt
+}
+
+model CourseLearning {
+  id           String   @id @default(cuid())
+  text         String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model CourseModule {
+  id           String      @id @default(cuid())
+  track        CourseTrack
+  title        String
+  topics       Json        @default("[]")
+  displayOrder Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([track, displayOrder])
+}
+
+model CourseBonus {
+  id           String   @id @default(cuid())
+  text         String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
 }

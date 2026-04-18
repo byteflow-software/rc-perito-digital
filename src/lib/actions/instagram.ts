@@ -77,3 +77,12 @@ export async function getInstagram(id: string) {
 export async function listInstagram() {
   return prisma.instagramPost.findMany({ orderBy: { dateAdded: "desc" } });
 }
+
+export async function listPublicInstagram(limit = 8) {
+  return prisma.instagramPost.findMany({
+    where: { status: "LIVE" },
+    orderBy: { dateAdded: "desc" },
+    take: limit,
+    select: { id: true, title: true, imageUrl: true, instagramUrl: true },
+  });
+}

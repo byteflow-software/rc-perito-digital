@@ -73,3 +73,12 @@ export async function getShort(id: string) {
 export async function listShorts() {
   return prisma.short.findMany({ orderBy: { dateAdded: "desc" } });
 }
+
+export async function listPublicShorts(limit = 12) {
+  return prisma.short.findMany({
+    where: { status: "LIVE" },
+    orderBy: { dateAdded: "desc" },
+    take: limit,
+    select: { id: true, title: true, thumbnailUrl: true, youtubeUrl: true },
+  });
+}

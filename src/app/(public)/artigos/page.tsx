@@ -13,6 +13,7 @@ import { StjStfCitations } from "@/components/home/stj-stf-citations";
 import { JsonLd } from "@/components/shared/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
+import { listPublishedArtigos } from "@/lib/actions/artigos";
 
 export const metadata: Metadata = {
   title: "Artigos",
@@ -25,54 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Real articles from romullocarvalho.com.br
-const mockArticles = [
-  {
-    title: "Hash, pra que te quero?",
-    slug: "hash-pra-que-te-quero",
-    excerpt:
-      "O termo hash é cada vez mais presente em laudos periciais, decisões judiciais e documentos técnicos. Compreender o que significa e como se aplica esse conceito é essencial para interpretar evidências digitais.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "forense-digital",
-    readingTime: 10,
-    publishedAt: new Date("2025-03-15"),
-  },
-  {
-    title: "Metadados e a Prova Digital",
-    slug: "metadados-e-a-prova-digital",
-    excerpt:
-      "No universo da prova digital, compreender e analisar metadados é tão importante quanto entender o conteúdo principal de um arquivo. Muitas vezes, eles são a chave para confirmar a autenticidade de uma evidência.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "forense-digital",
-    readingTime: 8,
-    publishedAt: new Date("2025-02-20"),
-  },
-  {
-    title: "POP SENASP 2013",
-    slug: "pop-senasp-2013",
-    excerpt:
-      "O POP — Procedimento Operacional Padrão é um documento da SENASP que padroniza as ações das forças de segurança pública no Brasil, incluindo apreensão e custódia de evidências digitais.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "forense-digital",
-    readingTime: 6,
-    publishedAt: new Date("2025-01-10"),
-  },
-  {
-    title: "POP SENASP 2024",
-    slug: "pop-senasp-2024",
-    excerpt:
-      "O POP SENASP 2024 é a atualização do Procedimento Operacional Padrão, incorporando inovações tecnológicas e atualizando diretrizes de preservação de evidências digitais à luz da Lei 13.964/2019.",
-    featuredImage: null,
-    featuredImageAlt: null,
-    category: "forense-digital",
-    readingTime: 5,
-    publishedAt: new Date("2025-01-05"),
-  },
-];
-
 const breadcrumbs = [{ name: "Artigos", href: "/artigos" }];
 
 interface Props {
@@ -82,29 +35,18 @@ interface Props {
 export default async function ArtigosPage({ searchParams }: Props) {
   const { category, page, q } = await searchParams;
   const currentPage = Math.max(1, parseInt(page || "1"));
+  const skip = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  // TODO: Replace with Prisma query
-  let filtered = mockArticles;
-  if (category) {
-    filtered = filtered.filter((a) => a.category === category);
-  }
-  if (q) {
-    const query = q.toLowerCase();
-    filtered = filtered.filter(
-      (a) =>
-        a.title.toLowerCase().includes(query) ||
-        a.excerpt.toLowerCase().includes(query)
-    );
-  }
+  const { items, total } = await listPublishedArtigos({
+    category,
+    query: q,
+    skip,
+    take: ITEMS_PER_PAGE,
+  });
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
-
-  const featured = !category && !q && currentPage === 1 ? paged[0] : null;
-  const articles = featured ? paged.slice(1) : paged;
+  const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+  const featured = !category && !q && currentPage === 1 ? items[0] : null;
+  const articles = featured ? items.slice(1) : items;
 
   const searchParamsObj: Record<string, string> = {};
   if (category) searchParamsObj.category = category;

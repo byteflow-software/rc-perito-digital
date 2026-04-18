@@ -5,6 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, FileText, Tag, Video, Camera,
   BookOpen, HelpCircle, Mail, Search, Settings, LogOut,
+  Home, User, GraduationCap, Users, Award, Globe, Tv,
+  Play, ScrollText, Gavel, CalendarDays, Building2,
 } from "lucide-react";
 
 const nav = [
@@ -13,15 +15,43 @@ const nav = [
     links: [
       { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
       { href: "/admin/blog", label: "Artigos", icon: FileText },
-      { href: "/admin/tags", label: "Tags", icon: Tag },
       { href: "/admin/shorts", label: "Shorts", icon: Video },
       { href: "/admin/instagram", label: "Instagram", icon: Camera },
     ],
   },
   {
-    section: "Site",
+    section: "Páginas",
     links: [
+      { href: "/admin/hero", label: "Hero (Home)", icon: Home },
+      { href: "/admin/about-content", label: "Sobre — Texto", icon: User },
+    ],
+  },
+  {
+    section: "Perfil / CV",
+    links: [
+      { href: "/admin/partners", label: "Parceiros", icon: Building2 },
+      { href: "/admin/mission-values", label: "Missão e Valores", icon: Award },
+      { href: "/admin/milestones", label: "Timeline", icon: CalendarDays },
+      { href: "/admin/certifications", label: "Certificações", icon: GraduationCap },
+      { href: "/admin/communities", label: "Comunidades", icon: Users },
+      { href: "/admin/presentations", label: "Palestras", icon: Tag },
+      { href: "/admin/languages", label: "Idiomas", icon: Globe },
+    ],
+  },
+  {
+    section: "Mídia",
+    links: [
+      { href: "/admin/media", label: "Aparições na Mídia", icon: Tv },
+      { href: "/admin/video-features", label: "Vídeos", icon: Play },
+      { href: "/admin/selected-works", label: "Trabalhos", icon: ScrollText },
+      { href: "/admin/court-citations", label: "Citações", icon: Gavel },
       { href: "/admin/livros", label: "Livros", icon: BookOpen },
+    ],
+  },
+  {
+    section: "Sistema",
+    links: [
+      { href: "/admin/tags", label: "Tags", icon: Tag },
       { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
       { href: "/admin/newsletter", label: "Newsletter", icon: Mail },
       { href: "/admin/seo", label: "SEO", icon: Search },
