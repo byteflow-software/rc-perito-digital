@@ -21,7 +21,7 @@ export async function createCourseModule(data: CourseModuleInput): Promise<Actio
   const parsed = CourseModuleSchema.safeParse(data);
   if (!parsed.success) return { success: false, error: parsed.error.issues[0]?.message ?? "Erro" };
   const item = await prisma.courseModule.create({ data: parsed.data });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-modules");
   revalidatePath("/curso-osint");
   return { success: true, data: { id: item.id } };
 }
@@ -32,7 +32,7 @@ export async function updateCourseModule(id: string, data: CourseModuleInput): P
   const parsed = CourseModuleSchema.safeParse(data);
   if (!parsed.success) return { success: false, error: parsed.error.issues[0]?.message ?? "Erro" };
   await prisma.courseModule.update({ where: { id }, data: parsed.data });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-modules");
   revalidatePath("/curso-osint");
   return { success: true };
 }
@@ -41,7 +41,7 @@ export async function deleteCourseModule(id: string): Promise<ActionResult> {
   const user = await getCurrentUser();
   if (!user) return { success: false, error: "Não autorizado" };
   await prisma.courseModule.delete({ where: { id } });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-modules");
   revalidatePath("/curso-osint");
   return { success: true };
 }
@@ -55,4 +55,8 @@ export async function listModulesByTrack(track: "THEORETICAL" | "PRACTICAL") {
     where: { track },
     orderBy: { displayOrder: "asc" },
   });
+}
+
+export async function getCourseModule(id: string) {
+  return prisma.courseModule.findUnique({ where: { id } });
 }

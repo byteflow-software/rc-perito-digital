@@ -9,10 +9,17 @@ export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const file = formData.get("file") as File | null;
   const folder = (formData.get("bucket") as string) || "general";
+  const kind = (formData.get("kind") as string) || "image";
 
   if (!file) return jsonError("Nenhum arquivo enviado");
-  if (!file.type.startsWith("image/")) return jsonError("Apenas imagens são permitidas");
-  if (file.size > 5 * 1024 * 1024) return jsonError("Arquivo deve ter no máximo 5MB");
+
+  if (kind === "pdf") {
+    if (file.type !== "application/pdf") return jsonError("Apenas PDFs são permitidos");
+    if (file.size > 20 * 1024 * 1024) return jsonError("PDF deve ter no máximo 20MB");
+  } else {
+    if (!file.type.startsWith("image/")) return jsonError("Apenas imagens são permitidas");
+    if (file.size > 5 * 1024 * 1024) return jsonError("Imagem deve ter no máximo 5MB");
+  }
 
   const filename = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
 

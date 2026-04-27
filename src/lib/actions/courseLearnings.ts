@@ -19,7 +19,7 @@ export async function createCourseLearning(data: CourseLearningInput): Promise<A
   const parsed = CourseLearningSchema.safeParse(data);
   if (!parsed.success) return { success: false, error: parsed.error.issues[0]?.message ?? "Erro" };
   const item = await prisma.courseLearning.create({ data: parsed.data });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-learnings");
   revalidatePath("/curso-osint");
   return { success: true, data: { id: item.id } };
 }
@@ -30,7 +30,7 @@ export async function updateCourseLearning(id: string, data: CourseLearningInput
   const parsed = CourseLearningSchema.safeParse(data);
   if (!parsed.success) return { success: false, error: parsed.error.issues[0]?.message ?? "Erro" };
   await prisma.courseLearning.update({ where: { id }, data: parsed.data });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-learnings");
   revalidatePath("/curso-osint");
   return { success: true };
 }
@@ -39,11 +39,15 @@ export async function deleteCourseLearning(id: string): Promise<ActionResult> {
   const user = await getCurrentUser();
   if (!user) return { success: false, error: "Não autorizado" };
   await prisma.courseLearning.delete({ where: { id } });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/course-learnings");
   revalidatePath("/curso-osint");
   return { success: true };
 }
 
 export async function listCourseLearnings() {
   return prisma.courseLearning.findMany({ orderBy: { displayOrder: "asc" } });
+}
+
+export async function getCourseLearning(id: string) {
+  return prisma.courseLearning.findUnique({ where: { id } });
 }

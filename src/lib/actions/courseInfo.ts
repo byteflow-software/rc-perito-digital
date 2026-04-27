@@ -48,7 +48,7 @@ export async function updateCourseInfo(data: CourseInfoInput): Promise<ActionRes
     create: { id: "default", ...parsed.data },
     update: parsed.data,
   });
-  revalidatePath("/admin/course");
+  revalidatePath("/admin/curso");
   revalidatePath("/curso-osint");
   return { success: true };
 }

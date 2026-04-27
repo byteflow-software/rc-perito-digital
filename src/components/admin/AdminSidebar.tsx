@@ -7,6 +7,7 @@ import {
   BookOpen, HelpCircle, Mail, Search, Settings, LogOut,
   Home, User, GraduationCap, Users, Award, Globe, Tv,
   Play, ScrollText, Gavel, CalendarDays, Building2,
+  Sparkles, Lightbulb, ListChecks,
 } from "lucide-react";
 
 const nav = [
@@ -24,6 +25,15 @@ const nav = [
     links: [
       { href: "/admin/hero", label: "Hero (Home)", icon: Home },
       { href: "/admin/about-content", label: "Sobre — Texto", icon: User },
+    ],
+  },
+  {
+    section: "Curso OSINT",
+    links: [
+      { href: "/admin/curso", label: "Curso — Geral", icon: GraduationCap },
+      { href: "/admin/course-learnings", label: "Aprendizados", icon: Lightbulb },
+      { href: "/admin/course-modules", label: "Módulos", icon: ListChecks },
+      { href: "/admin/course-bonuses", label: "Bônus", icon: Sparkles },
     ],
   },
   {

@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Save, Trash2, AlertCircle } from "lucide-react";
 import { createSelectedWork, updateSelectedWork, deleteSelectedWork } from "@/lib/actions/selectedWorks";
+import { PdfUpload } from "@/components/admin/pdf-upload";
 
 const schema = z.object({
   title: z.string().min(1, "Título obrigatório"),
@@ -25,7 +26,7 @@ export function SelectedWorkForm({ item, id, isEdit }: Props) {
   const [serverError, setServerError] = useState("");
   const [saving, setSaving] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       title: item?.title ?? "",
@@ -82,8 +83,15 @@ export function SelectedWorkForm({ item, id, isEdit }: Props) {
       </div>
       <div>
         <label className={lbl}>URL do Documento / PDF *</label>
-        <input {...register("url")} className={inp} placeholder="https://" />
+        <input {...register("url")} className={inp} placeholder="https:// ou faça upload abaixo" />
         {errors.url && <p className={err}>{errors.url.message}</p>}
+        <div className="mt-2">
+          <PdfUpload
+            value={watch("url") || null}
+            onChange={(url) => setValue("url", url ?? "", { shouldValidate: true })}
+            bucket="selected-works"
+          />
+        </div>
       </div>
       <div>
         <label className={lbl}>URL de Preview (opcional)</label>
