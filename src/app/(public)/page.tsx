@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/home/hero-section";
+import { WhatsappFloat } from "@/components/home/whatsapp-float";
 import { TrustBar } from "@/components/home/trust-bar";
 import { MissionValues } from "@/components/sobre/mission-values";
 import { MediaAppearances } from "@/components/home/media-appearances";
@@ -30,6 +31,7 @@ export default async function HomePage() {
       <ShortsCarousel shorts={shorts} />
       <InstagramGrid posts={instagram} />
       <BooksCarousel />
+      <WhatsappFloat />
     </>
   );
 }
